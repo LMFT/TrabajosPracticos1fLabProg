@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1599157416 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\trabajospracticos1flabprog\tp 1\tp 1\aritmeticas.c
+	<stdio.h>
+
+1599075768 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\trabajospracticos1flabprog\tp 1\tp 1\entrada y verificacion.c
+	<stdio.h>
+
+1599157527 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\trabajospracticos1flabprog\tp 1\tp 1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Aritmeticas.h"
+	"Entrada y verificacion.h"
+
+1599153964 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\trabajospracticos1flabprog\tp 1\tp 1\aritmeticas.h
+
+1599154383 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\trabajospracticos1flabprog\tp 1\tp 1\entrada y verificacion.h
+
