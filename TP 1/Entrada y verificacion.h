@@ -6,3 +6,5 @@
  *
  */
 float pedirNumero();
+
+int validarNumero(const char* floatMask, void* variable);

@@ -60,6 +60,7 @@ long int factorialNumero(float numero)
     {
         printf("El factorial solo admite enteros positivos. Reingrese el numero\n");
         scanf("%f", &numero);
+        comparacion = numero;
     }
 
     //El valor por defecto del resultado es 1, si el numero ingresado es mayor se reemplaza el valor del resultado
