@@ -34,36 +34,17 @@ float dividirDosNumeros (float numero1, float numero2)
 {
     float division;
 
-    while(numero2 == 0)
-    {
-        printf("\nNo se puede dividir por cero. Ingrese otro numero\n");
-        scanf("%f", &numero2);
-    }
     division = numero1 / numero2;
     return division;
 }
 
 //Calcula el factorial de un número
 
-long int factorialNumero(float numero)
+long int  factorialNumero(float numero)
 {
-    long int resultado;
-    int comparacion;
+    long int  resultado;
 
-    //Resultado inicializada con la respuesta por defecto y para uso en futuros productos
     resultado = 1;
-    //Para verificar que el numero ingresado sea entero
-    comparacion = numero;
-
-
-    while(numero < 0 || numero != comparacion)
-    {
-        printf("El factorial solo admite enteros positivos. Reingrese el numero\n");
-        scanf("%f", &numero);
-        comparacion = numero;
-    }
-
-    //El valor por defecto del resultado es 1, si el numero ingresado es mayor se reemplaza el valor del resultado
 
     while(numero >1)
     {

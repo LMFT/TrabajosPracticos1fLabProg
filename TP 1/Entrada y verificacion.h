@@ -1,10 +1,25 @@
+/** \brief Pide un numero entero al usuario y devuelve ese numero
+ *
+ * \return int Numero ingresado por el usuario
+ *
+ */
 
+int pedirNumeroEntero();
 
 /** \brief Pide un numero flotante al usuario y devuelve ese numero
  *
- * \return float Numero ingresado por el usuario
+ * \return int Numero ingresado por el usuario
  *
  */
-float pedirNumero();
+float pedirNumeroFlotante();
 
-int validarNumero(const char* floatMask, void* variable);
+/** \brief Permite cargar numeros en el array ingresado
+ *
+ * \param int[] Array al cual cargar datos
+ * \param int Longitud del array
+ * \return void La funcion no retorna valores
+ *
+ */
+void cargarNumerosArray(int[], int);
+
+
