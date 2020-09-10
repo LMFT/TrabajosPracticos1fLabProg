@@ -32,17 +32,27 @@ int main()
     float numero2;
     int opcion;
 
+
     //Outputs
     long double resultados[T];
+
+    //Flags
+    int flag;
 
     //Inicializo las variables para mostrarlas en el menu y futuro uso en el programa
     numero1 = 0;
     numero2 = 0;
-
+    flag = 0;
 
     do
     {
     opcion = menu(numero1, numero2);
+    flag = verificarPrimerIngreso(flag, opcion);
+
+    if(flag == 0)
+    {
+        continue;
+    }
 
     switch(opcion)
     {
@@ -63,7 +73,7 @@ int main()
         case 5:
             break;
         default:
-            printf("\nLa opcion ingresada no es válida.\n");
+            printf("\nLa opcion ingresada no es valida.\n");
 
     }
     }while(opcion != 5);

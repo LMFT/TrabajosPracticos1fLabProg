@@ -34,7 +34,6 @@ int menu(float numero1, float numero2)
 {
     int opcion;
 
-    printf("*** Calculadora de dos numeros *** \n\n");
     printf("\n***Ingrese una opcion ***\n\n");
     printf("1- Ingresar primer numero (A = %.2f)\n", numero1);
     printf("2- Ingresar segundo numero (B = %.2f)\n", numero2);
@@ -46,5 +45,19 @@ int menu(float numero1, float numero2)
 
 
     return opcion;
+}
+
+int verificarPrimerIngreso(int flag, int opcion)
+{
+    if(!(opcion == 1 || opcion == 2 || opcion == 5) && flag == 0)
+    {
+        printf("\nDebe ingresar valores antes de realizar o mostrar calculos\n\n");
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+
 }
 

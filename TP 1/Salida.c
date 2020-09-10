@@ -32,15 +32,15 @@ void mostrarResultados(long double resultados[], int cant, float numero2)
         case 4:
             if(resultados[i] == 0)
             {
-                printf("Error: No se puede calcular el factorial de numeros negativos ni numeros decimales");
+                printf("\nError: No se puede calcular el factorial de numeros negativos ni numeros decimales");
             }
-            if(resultados[i] == -1)
+            else if(resultados[i] == -1)
             {
-                printf("El numero ingresado es muy grande para realizar este calculo. Este programa soporta hasta el numero inclusive");
+                printf("\nEl numero ingresado es muy grande para realizar este calculo. Este programa soporta hasta el numero inclusive");
             }
             else
             {
-               printf("El resultado del factorial de A es: %.2f\n",(double)resultados[i]);
+               printf("\nEl resultado del factorial de A es: %.2f\n",(double)resultados[i]);
             }
             break;
         case 5:
@@ -48,7 +48,7 @@ void mostrarResultados(long double resultados[], int cant, float numero2)
             {
                 printf("Error: No se puede calcular el factorial de numeros negativos ni numeros decimales");
             }
-            if(resultados[i] == -1)
+            else if(resultados[i] == -1)
             {
                 printf("El numero ingresado es muy grande para realizar este calculo. Este programa soporta hasta el numero inclusive");
             }

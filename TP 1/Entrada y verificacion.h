@@ -25,3 +25,14 @@ float pedirNumeroFlotante();
  */
 int menu(float , float );
 
+/** \brief Verifica si el usuario realizó un ingreso de datos por primera vez, impidiendo el acceso a las funciones de realizar y mostrar
+            calculos
+ *
+ * \param flag int Bandera que indica si el usuario ingreso datos previamente
+ * \param opcion int Opcion elegida por el usuario
+ * \return int Retorna 0 si el usuario no ingresó datos previamente. 1 si el usuario ingresó datos previamente o selecciono
+            una opcion valida
+ *
+ */
+int verificarPrimerIngreso(int flag, int opcion);
+
