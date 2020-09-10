@@ -39,6 +39,14 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Entrada y verificacion.h" />
+		<Unit filename="Funcionalidades.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Funcionalidades.h" />
+		<Unit filename="Salida.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Salida.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

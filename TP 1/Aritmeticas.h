@@ -5,7 +5,7 @@
  * \return float Resultado de la suma
  *
  */
-float sumarDosNumeros (float, float);
+long double sumarDosNumeros (float, float);
 
 /** \brief  Recibe 2 numeros, los resta y devuelve el resultado
  *
@@ -14,7 +14,7 @@ float sumarDosNumeros (float, float);
  * \return float Resultado de la resta
  *
  */
-float restarDosNumeros (float, float);
+long double restarDosNumeros (float, float);
 
 /** \brief  Recibe 2 numeros, los multiplica y devuelve el resultado
  *
@@ -23,7 +23,7 @@ float restarDosNumeros (float, float);
  * \return float Resultado de la multiplicación
  *
  */
-float multiplicarDosNumeros (float , float );
+long double multiplicarDosNumeros (float , float );
 
 /** \brief  Recibe 2 numeros, los divide y devuelve el resultado
  *
@@ -32,7 +32,7 @@ float multiplicarDosNumeros (float , float );
  * \return float Resultado de la división
  *
  */
-float dividirDosNumeros (float, float );
+long double dividirDosNumeros (float, float );
 
 /** \brief Recibe un numero flotante y, si es entero, devuelve el factorial
  *
@@ -40,4 +40,4 @@ float dividirDosNumeros (float, float );
  * \return long int Factorial del numero. Retorna -1 si el usuario anula la operacion
  *
  */
-long int factorialNumero(float);
+long double factorialNumero(float);

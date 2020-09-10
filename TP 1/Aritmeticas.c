@@ -1,9 +1,9 @@
 #include <stdio.h>
 
 //Suma dos numeros
-float sumarDosNumeros (float numero1, float numero2)
+long double sumarDosNumeros (float numero1, float numero2)
 {
-   float suma;
+   long double suma;
 
    suma = numero1 + numero2;
 
@@ -12,41 +12,58 @@ float sumarDosNumeros (float numero1, float numero2)
 
 }
 //Resta 2 numeros
-float restarDosNumeros (float numero1, float numero2)
+long double restarDosNumeros (float numero1, float numero2)
 {
-    float resta;
+    long double resta;
     resta = numero1 - numero2;
 
 
     return resta;
 }
 // Multiplica 2 numeros
-float multiplicarDosNumeros (float numero1, float numero2)
+long double multiplicarDosNumeros (float numero1, float numero2)
 {
-    float producto;
+    long double producto;
     producto = numero1 * numero2;
 
 
     return producto;
 }
 //Divide dos numeros
-float dividirDosNumeros (float numero1, float numero2)
+long double dividirDosNumeros (float numero1, float numero2)
 {
-    float division;
+    long double division;
 
+    if(numero2 == 0)
+    {
+        division = 0;
+    }
+    else
+    {
     division = numero1 / numero2;
+    }
     return division;
 }
 
 //Calcula el factorial de un número
 
-long int  factorialNumero(float numero)
+long double  factorialNumero(float numero)
 {
-    long int  resultado;
+    long double  resultado;
+    int comparacion;
 
     resultado = 1;
+    comparacion = numero;
 
-    while(numero >1)
+    if(numero <0 || comparacion != numero)
+    {
+        return 0;
+    }
+   /* if(numero > 12)
+    {
+        return -1;
+    }*/
+    while(numero > 1)
     {
     resultado*=numero;
     numero--;

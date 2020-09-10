@@ -30,18 +30,21 @@ float pedirNumeroFlotante()
     return numero;
 }
 
-void cargarNumerosArray(int numeros[], int cant)
+int menu(float numero1, float numero2)
 {
-    int i;
+    int opcion;
 
-    for(i=0; i<cant; i++)
-    {
-        printf("Ingrese un numero: ");
-        while(!(scanf("%d", &numeros[i]) == 1))
-    {
-        fflush(stdin);
-        printf("\nEl valor ingresado no es un numero. Ingrese un numero: ");
-    }
+    printf("*** Calculadora de dos numeros *** \n\n");
+    printf("\n***Ingrese una opcion ***\n\n");
+    printf("1- Ingresar primer numero (A = %.2f)\n", numero1);
+    printf("2- Ingresar segundo numero (B = %.2f)\n", numero2);
+    printf("3- Realizar Operaciones \n");
+    printf("4- Mostrar Resultados\n");
+    printf("5- Salir\n\n");
+    opcion = pedirNumeroEntero();
 
-    }
+
+
+    return opcion;
 }
+

@@ -14,12 +14,14 @@ int pedirNumeroEntero();
  */
 float pedirNumeroFlotante();
 
-/** \brief Permite cargar numeros en el array ingresado
+
+
+/** \brief Muestra el menu principal de la calculadora
  *
- * \param int[] Array al cual cargar datos
- * \param int Longitud del array
- * \return void La funcion no retorna valores
+ * \param float Numero A mostrado en el menu para informar al usuario del actual valor del numero
+ * \param float Numero B mostrado en el menu para informar al usuario del actual valor del numero
+ * \return int  El valor de la variable opcion introducida por el usuario, indicando que opcion quiere que ejecute el programa
  *
  */
-void cargarNumerosArray(int[], int);
+int menu(float , float );
 
