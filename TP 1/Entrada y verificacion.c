@@ -5,6 +5,8 @@
 int pedirNumeroEntero()
 {
     int numero;
+
+    //Permite validar que el usuario solamente ingrese numeros
     while(!(scanf("%d", &numero) == 1))
     {
         fflush(stdin);
@@ -19,6 +21,7 @@ int pedirNumeroEntero()
 float pedirNumeroFlotante()
 {
     float numero;
+    //Permite validar que el usuario solamente ingrese numeros
     while(!(scanf("%f", &numero) == 1))
     {
         fflush(stdin);
@@ -30,16 +33,35 @@ float pedirNumeroFlotante()
     return numero;
 }
 
-int menu(float numero1, float numero2)
+//Menu de opciones de la calculadora, permitiendo ingresar los datos
+int menu(float numero1, float numero2, int flag1, int flag2)
 {
     int opcion;
 
-    printf("\n***Ingrese una opcion ***\n\n");
-    printf("1- Ingresar primer numero (A = %.2f)\n", numero1);
-    printf("2- Ingresar segundo numero (B = %.2f)\n", numero2);
+    printf("\n***x MENU PRINCIPAL ***\n\n");
+    //El if es para no mostrar valores basura previo a la carga de datos
+    if(flag1 == 0)
+    {
+        printf("1- Ingresar primer numero (A = X)\n");
+    }
+    else
+    {
+        printf("1- Ingresar primer numero (A = %.2f)\n", numero1);
+    }
+    //El if es para no mostrar valores basura previo a la carga de datos
+    if(flag2 == 0)
+    {
+        printf("2- Ingresar segundo numero (B = Y)\n");
+    }
+    else
+    {
+        printf("2- Ingresar segundo numero (B = %.2f)\n", numero2);
+    }
+
     printf("3- Realizar Operaciones \n");
     printf("4- Mostrar Resultados\n");
     printf("5- Salir\n\n");
+    printf("Ingrese una opcion: ");
     opcion = pedirNumeroEntero();
 
 
@@ -47,17 +69,19 @@ int menu(float numero1, float numero2)
     return opcion;
 }
 
-int verificarPrimerIngreso(int flag, int opcion)
+//Recibe el valor de los flags de main() junto con la opcion ingresada por el usuario para verificar que el usuario ingrese datos antes
+// de realizar cualquier tipo de calculo
+int verificarPrimerIngreso(int opcion, int flag1, int flag2)
 {
-    if(!(opcion == 1 || opcion == 2 || opcion == 5) && flag == 0)
+    if((flag1 == 0 || flag2 == 0) && (opcion != 1 && opcion != 2 && opcion != 5))
     {
-        printf("\nDebe ingresar valores antes de realizar o mostrar calculos\n\n");
+        printf("\nDebe ingresar valores en A y B para poder realizar operaciones");
         return 0;
     }
     else
     {
         return 1;
     }
-
 }
+
 

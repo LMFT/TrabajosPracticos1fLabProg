@@ -37,7 +37,7 @@ long double dividirDosNumeros (float, float );
 /** \brief Recibe un numero flotante y, si es entero, devuelve el factorial
  *
  * \param float Numero al cual quiero calcular el factorial
- * \return long int Factorial del numero. Retorna -1 si el usuario anula la operacion
+ * \return long int Factorial del numero. Retorna 0 si el numero ingresado es negativo o decimal
  *
  */
 long double factorialNumero(float);

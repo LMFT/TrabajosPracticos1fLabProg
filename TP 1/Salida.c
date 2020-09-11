@@ -10,7 +10,7 @@ void mostrarResultados(long double resultados[], int cant, float numero2)
         switch(i)
         {
         case 0:
-            printf("El resultado de la suma es: %.2f\n",(double)resultados[i]);
+            printf(" El resultado de la suma es: %.2f\n",(double)resultados[i]);
 
             break;
         case 1:
@@ -20,6 +20,8 @@ void mostrarResultados(long double resultados[], int cant, float numero2)
             printf("El resultado del producto es: %.2f\n",(double)resultados[i]);
             break;
         case 3:
+            //En caso de que el retorno haya sido 0, se verifica si numero2 es igual a 0 para determinar si se trata
+            // de una division válida o una division por 0 (el calculo de la division retorna 0 al dividir por 0)
             if(resultados[i] == 0 && numero2 == 0)
             {
                 printf("Error: No se puede calcular la division por 0, modifique el valor de B");
@@ -32,11 +34,8 @@ void mostrarResultados(long double resultados[], int cant, float numero2)
         case 4:
             if(resultados[i] == 0)
             {
-                printf("\nError: No se puede calcular el factorial de numeros negativos ni numeros decimales");
-            }
-            else if(resultados[i] == -1)
-            {
-                printf("\nEl numero ingresado es muy grande para realizar este calculo. Este programa soporta hasta el numero inclusive");
+                printf("\nError: No se puede calcular el factorial de A: no es posible calcular el factorial");
+                printf(" numeros negativos ni decimales\n");
             }
             else
             {
@@ -46,11 +45,8 @@ void mostrarResultados(long double resultados[], int cant, float numero2)
         case 5:
             if(resultados[i] == 0)
             {
-                printf("Error: No se puede calcular el factorial de numeros negativos ni numeros decimales");
-            }
-            else if(resultados[i] == -1)
-            {
-                printf("El numero ingresado es muy grande para realizar este calculo. Este programa soporta hasta el numero inclusive");
+                printf("\nError: No se puede calcular el factorial de B: no es posible calcular el factorial");
+                printf(" numeros negativos ni decimales\n");
             }
             else
             {

@@ -21,7 +21,8 @@
 #include "Salida.h"
 #include "Funcionalidades.h"
 
-#define T 6 // Cantidad de resultados a guardar(suma, resta, producto, division y 2 factoriales)
+#define R 6 // Cantidad de resultados a guardar(suma, resta, producto, division y 2 factoriales)
+
 
 
 int main()
@@ -34,48 +35,56 @@ int main()
 
 
     //Outputs
-    long double resultados[T];
+    long double resultados[R];
 
-    //Flags
-    int flag;
+    //Variables de uso interno
+    int flag1;
+    int flag2;
+    int verificacion;
 
-    //Inicializo las variables para mostrarlas en el menu y futuro uso en el programa
-    numero1 = 0;
-    numero2 = 0;
-    flag = 0;
+    //Inicializo flags y string de resultados
+    inicializarResultados(resultados, R);
+    flag1 = 0;
+    flag2 = 0;
 
     do
     {
-    opcion = menu(numero1, numero2);
-    flag = verificarPrimerIngreso(flag, opcion);
+        // Cargo el menu de opciones y recibo la respuesta del usuario
+        opcion = menu(numero1, numero2, flag1, flag2);
 
-    if(flag == 0)
-    {
-        continue;
-    }
+        //Verifico si el usuario ya ingresó datos previamente
+        verificacion = verificarPrimerIngreso(opcion,flag1,flag2);
+        //Si la verificacion retorna 0, muestra un mensaje de error y vuelve al menu
+        if(verificacion == 0)
+        {
+            continue;
+        }
 
-    switch(opcion)
-    {
-        case 1:
-            printf("Ingrese el primer numero: ");
-            numero1 = pedirNumeroFlotante();
-            break;
-        case 2:
-            printf("Ingrese el segundo numero: ");
-            numero2 = pedirNumeroFlotante();
-            break;
-        case 3:
-            hacerOperaciones(resultados, T, numero1, numero2);
-            break;
-        case 4:
-            mostrarResultados(resultados, T, numero2);
-            break;
-        case 5:
-            break;
-        default:
-            printf("\nLa opcion ingresada no es valida.\n");
+        // Se ejecuta la opcion ingresada por el usuario
+        switch(opcion)
+        {
+            case 1:
+                flag1 = 1;
+                printf("Ingrese el primer numero: ");
+                numero1 = pedirNumeroFlotante();
+                break;
+            case 2:
+                flag2 = 1;
+                printf("Ingrese el segundo numero: ");
+                numero2 = pedirNumeroFlotante();
+                break;
+            case 3:
+                hacerOperaciones(resultados, R, numero1, numero2);
+                break;
+            case 4:
+                mostrarResultados(resultados, R, numero2);
+                break;
+            case 5:
+                break;
+            default:
+                printf("\nLa opcion ingresada no es valida.\n");
 
-    }
+        }
     }while(opcion != 5);
     return 0;
 }

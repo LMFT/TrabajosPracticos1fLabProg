@@ -32,13 +32,14 @@ void hacerOperaciones(long double resultados[], int cant, float numero1, float n
     }
 }
 
-void inicializarResultados(long double resultados[], int cant)
+void inicializarResultados(float string[], int cant)
 {
 
     int i;
 
     for(i = 0; i<cant; i++)
     {
-        resultados[i] = 0;
+        string[i] = 0;
     }
 }
+
