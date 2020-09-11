@@ -21,6 +21,7 @@ int pedirNumeroEntero()
 float pedirNumeroFlotante()
 {
     float numero;
+    printf("\nIngrese un numero: ");
     //Permite validar que el usuario solamente ingrese numeros
     while(!(scanf("%f", &numero) == 1))
     {
@@ -89,6 +90,5 @@ int verificarPrimerIngreso(int opcion, int flag1, int flag2)
         return 1;
     }
 }
-
 
 

@@ -53,7 +53,7 @@ int main()
 
     do
     {
-        // Cargo el menu de opciones y recibo la respuesta del usuario
+        // Cargo el menu de opciones y recibo la respuesta del usuario por retorno
         opcion = menu(numero1, numero2, flagNumero1, flagNumero2);
 
         //Verifico si el usuario ya ingresó datos previamente
@@ -76,12 +76,10 @@ int main()
         {
             case 1:
                 flagNumero1 = 1;
-                printf("Ingrese el primer numero: ");
                 numero1 = pedirNumeroFlotante();
                 break;
             case 2:
                 flagNumero2 = 1;
-                printf("Ingrese el segundo numero: ");
                 numero2 = pedirNumeroFlotante();
                 break;
             case 3:
