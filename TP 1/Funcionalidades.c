@@ -1,6 +1,6 @@
 #include "Aritmeticas.h"
 
-void hacerOperaciones(long double resultados[], int cant, float numero1, float numero2)
+int hacerOperaciones(long double resultados[], int cant, float numero1, float numero2)
 {
 
     int i;
@@ -30,6 +30,7 @@ void hacerOperaciones(long double resultados[], int cant, float numero1, float n
 
         }
     }
+    return 1;
 }
 
 void inicializarResultados(float string[], int cant)

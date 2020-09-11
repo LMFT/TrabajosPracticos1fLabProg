@@ -5,10 +5,10 @@
  * \param int Longitud del array de resultados
  * \param float Primer numero con el cual se realizan las operaciones
  * \param float Segundo numero con el cual se realizan las operaciones
- * \return void La funcion mdifica el array original
+ * \return int Retorna 1 al flag de operaciones para permitir el acceso a la funcion de mostrar resultados
  *
  */
-void hacerOperaciones(long double resultados[], int cant,float numero1,float numero2);
+int hacerOperaciones(long double resultados[], int cant,float numero1,float numero2);
 
 /** \brief Inicializa el string resultados en valor 0
  *

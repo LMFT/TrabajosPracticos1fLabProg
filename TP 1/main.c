@@ -38,43 +38,54 @@ int main()
     long double resultados[R];
 
     //Variables de uso interno
-    int flag1;
-    int flag2;
+    int flagNumero1;
+    int flagNumero2;
+    int flagOperaciones;
     int verificacion;
 
-    //Inicializo flags y string de resultados
+    //Inicializo variables
     inicializarResultados(resultados, R);
-    flag1 = 0;
-    flag2 = 0;
+    numero1 = 0; // Para eliminar warnings de uso sin inicializacion
+    numero2 = 0; // Para eliminar warnings de uso sin inicializacion
+    flagNumero1 = 0;
+    flagNumero2 = 0;
+    flagOperaciones = 0;
 
     do
     {
         // Cargo el menu de opciones y recibo la respuesta del usuario
-        opcion = menu(numero1, numero2, flag1, flag2);
+        opcion = menu(numero1, numero2, flagNumero1, flagNumero2);
 
         //Verifico si el usuario ya ingresó datos previamente
-        verificacion = verificarPrimerIngreso(opcion,flag1,flag2);
+        verificacion = verificarPrimerIngreso(opcion,flagNumero1,flagNumero2);
         //Si la verificacion retorna 0, muestra un mensaje de error y vuelve al menu
-        if(verificacion == 0)
+        if(!(verificacion == 1))
         {
             continue;
         }
+
+        if((flagOperaciones == 0 && opcion == 4))
+        {
+            printf("\nDebe realizar los calculos antes de mostrar los resultados");
+            continue;
+        }
+
 
         // Se ejecuta la opcion ingresada por el usuario
         switch(opcion)
         {
             case 1:
-                flag1 = 1;
+                flagNumero1 = 1;
                 printf("Ingrese el primer numero: ");
                 numero1 = pedirNumeroFlotante();
                 break;
             case 2:
-                flag2 = 1;
+                flagNumero2 = 1;
                 printf("Ingrese el segundo numero: ");
                 numero2 = pedirNumeroFlotante();
                 break;
             case 3:
-                hacerOperaciones(resultados, R, numero1, numero2);
+                flagOperaciones = hacerOperaciones(resultados, R, numero1, numero2);
                 break;
             case 4:
                 mostrarResultados(resultados, R, numero2);

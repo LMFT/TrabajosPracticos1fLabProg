@@ -38,7 +38,7 @@ int menu(float numero1, float numero2, int flag1, int flag2)
 {
     int opcion;
 
-    printf("\n***x MENU PRINCIPAL ***\n\n");
+    printf("\n*** MENU PRINCIPAL ***\n\n");
     //El if es para no mostrar valores basura previo a la carga de datos
     if(flag1 == 0)
     {
@@ -58,7 +58,13 @@ int menu(float numero1, float numero2, int flag1, int flag2)
         printf("2- Ingresar segundo numero (B = %.2f)\n", numero2);
     }
 
-    printf("3- Realizar Operaciones \n");
+    printf("3- Realizar Operaciones \n\n");
+    printf("    a. Suma (A+B)\n");
+    printf("    b. Resta (A-B)\n");
+    printf("    c. Producto (A*B)\n");
+    printf("    d. Division (A/B)\n");
+    printf("    e. Factorial de A (A!)\n");
+    printf("    f. Factorial de B (B!)\n\n");
     printf("4- Mostrar Resultados\n");
     printf("5- Salir\n\n");
     printf("Ingrese una opcion: ");
@@ -83,5 +89,6 @@ int verificarPrimerIngreso(int opcion, int flag1, int flag2)
         return 1;
     }
 }
+
 
 
