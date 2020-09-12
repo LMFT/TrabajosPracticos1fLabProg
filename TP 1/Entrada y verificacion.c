@@ -6,38 +6,33 @@ int pedirNumeroEntero()
 {
     int numero;
 
+
     //Permite validar que el usuario solamente ingrese numeros
     while(!(scanf("%d", &numero) == 1))
     {
         fflush(stdin);
         printf("\nEl valor ingresado no es un numero. Ingrese un numero: ");
     }
-
-
-
     return numero;
 }
 
 float pedirNumeroFlotante()
 {
     float numero;
-    printf("\nIngrese un numero: ");
     //Permite validar que el usuario solamente ingrese numeros
     while(!(scanf("%f", &numero) == 1))
     {
         fflush(stdin);
         printf("\nEl valor ingresado no es un numero. Ingrese un numero: ");
     }
-
-
-
     return numero;
 }
 
 //Menu de opciones de la calculadora, permitiendo ingresar los datos
 int menu(float numero1, float numero2, int flag1, int flag2)
 {
-    int opcion;
+    float opcion;  //Permite cargar numeros flotantes al menu
+    int comparacion; // Compara el valor de la variable opcion contra su contraparte entera para eliminar casos de error
 
     printf("\n*** MENU PRINCIPAL ***\n\n");
     //El if es para no mostrar valores basura previo a la carga de datos
@@ -149,9 +144,12 @@ int menu(float numero1, float numero2, int flag1, int flag2)
     printf("4- Mostrar Resultados\n");
     printf("5- Salir\n\n");
     printf("Ingrese una opcion: ");
-    opcion = pedirNumeroEntero();
-
-
+    opcion = pedirNumeroFlotante();
+    comparacion = opcion;
+    if(comparacion != opcion)
+    {
+        return -1;
+    }
 
     return opcion;
 }

@@ -45,8 +45,6 @@ int main()
 
     //Inicializo variables
     inicializarResultados(resultados, R);
-    numero1 = 0; // Para eliminar warnings de uso sin inicializacion
-    numero2 = 0; // Para eliminar warnings de uso sin inicializacion
     flagNumero1 = 0;
     flagNumero2 = 0;
     flagOperaciones = 0;
@@ -63,8 +61,7 @@ int main()
         {
             continue;
         }
-
-        if((flagOperaciones == 0 && opcion == 4))
+        if(flagOperaciones == 0 && opcion == 4)
         {
             printf("\nDebe realizar los calculos antes de mostrar los resultados");
             continue;
@@ -75,11 +72,13 @@ int main()
         switch(opcion)
         {
             case 1:
+                printf("\nIngrese un numero: ");
                 flagNumero1 = 1;
                 numero1 = pedirNumeroFlotante();
                 break;
             case 2:
                 flagNumero2 = 1;
+                printf("\nIngrese un numero: ");
                 numero2 = pedirNumeroFlotante();
                 break;
             case 3:
