@@ -5,12 +5,13 @@ void mostrarResultados(long double resultados[], int cant, float numero2)
 {
     int i;
 
+    printf("\n*******************************************\n");
     for(i=0; i<cant; i++)
     {
         switch(i)
         {
         case 0:
-            printf(" El resultado de la suma es: %.2f\n",(double)resultados[i]);
+            printf("El resultado de la suma es: %.2f\n",(double)resultados[i]);
 
             break;
         case 1:
@@ -28,7 +29,7 @@ void mostrarResultados(long double resultados[], int cant, float numero2)
             }
             else
             {
-            printf("El resultado de la division es: %.2f\n",(double)resultados[i]);
+            printf("El resultado de la division es: %.2f",(double)resultados[i]);
             }
             break;
         case 4:
@@ -55,4 +56,5 @@ void mostrarResultados(long double resultados[], int cant, float numero2)
             break;
         }
     }
+    printf("\n*******************************************\n\n");
 }

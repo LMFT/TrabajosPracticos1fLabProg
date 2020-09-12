@@ -59,13 +59,93 @@ int menu(float numero1, float numero2, int flag1, int flag2)
         printf("2- Ingresar segundo numero (B = %.2f)\n", numero2);
     }
 
+    //Estructura condicional para alternar entre letras y numeros al mostrar las operaciones en el menu
     printf("3- Realizar Operaciones \n\n");
-    printf("    a. Suma (A+B)\n");
-    printf("    b. Resta (A-B)\n");
-    printf("    c. Producto (A*B)\n");
-    printf("    d. Division (A/B)\n");
-    printf("    e. Factorial de A (A!)\n");
-    printf("    f. Factorial de B (B!)\n\n");
+    if(flag1 && flag2)
+    {
+       printf("    a. Suma (%.2f+%.2f)\n", numero1, numero2);
+    }
+    else if (flag1)
+    {
+       printf("    a. Suma (%.2f+B)\n", numero1);
+    }
+    else if (flag2)
+    {
+        printf("    a. Suma (A+%.2f)\n", numero2);
+    }
+    else
+    {
+       printf("    a. Suma (A+B)\n");
+    }
+
+    if(flag1 && flag2)
+    {
+       printf("    b. Resta (%.2f-%.2f)\n", numero1, numero2);
+    }
+    else if (flag1)
+    {
+       printf("    b. Resta (%.2f-B)\n", numero1);
+    }
+    else if (flag2)
+    {
+        printf("    b. Resta (A-%.2f)\n", numero2);
+    }
+    else
+    {
+       printf("    b. Resta (A-B)\n");
+    }
+
+    if(flag1 && flag2)
+    {
+       printf("    c. Producto (%.2f*%.2f)\n", numero1, numero2);
+    }
+    else if (flag1)
+    {
+       printf("    c. Producto (%.2f*B)\n", numero1);
+    }
+    else if (flag2)
+    {
+        printf("    c. Producto (A*%.2f)\n", numero2);
+    }
+    else
+    {
+       printf("    c. Producto (A*B)\n");
+    }
+
+    if(flag1 && flag2)
+    {
+       printf("    d. Division (%.2f/%.2f)\n", numero1, numero2);
+    }
+    else if (flag1)
+    {
+       printf("    d. Division (%.2f/B)\n", numero1);
+    }
+    else if (flag2)
+    {
+        printf("    d. Division (A/%.2f)\n", numero2);
+    }
+    else
+    {
+       printf("    d. Division (A/B)\n");
+    }
+
+    if(flag1)
+    {
+       printf("    e. Factorial de A (%.2f!)\n", numero1);
+    }
+    else
+    {
+       printf("    e. Factorial de A (A!)\n");
+    }
+
+    if(flag2)
+    {
+       printf("    f. Factorial de B (%.2f!)\n", numero2);
+    }
+    else
+    {
+       printf("    f. Factorial de B (B!)\n\n");
+    }
     printf("4- Mostrar Resultados\n");
     printf("5- Salir\n\n");
     printf("Ingrese una opcion: ");
