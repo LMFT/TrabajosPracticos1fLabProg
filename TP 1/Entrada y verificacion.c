@@ -34,6 +34,9 @@ int menu(float numero1, float numero2, int flag1, int flag2)
     float opcion;  //Permite cargar numeros flotantes al menu
     int comparacion; // Compara el valor de la variable opcion contra su contraparte entera para eliminar casos de error
 
+    printf("\n*********************************");
+    printf("\n******     CALCULADORA     ******");
+    printf("\n*********************************\n\n");
     printf("\n*** MENU PRINCIPAL ***\n\n");
     //El if es para no mostrar valores basura previo a la carga de datos
     if(flag1 == 0)
@@ -160,7 +163,7 @@ int verificarPrimerIngreso(int opcion, int flag1, int flag2)
 {
     if((flag1 == 0 || flag2 == 0) && (opcion != 1 && opcion != 2 && opcion != 5))
     {
-        printf("\nDebe ingresar valores en A y B para poder realizar operaciones");
+        printf("\nDebe ingresar valores en A y B para poder realizar operaciones\n");
         return 0;
     }
     else

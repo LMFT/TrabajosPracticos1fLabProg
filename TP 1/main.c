@@ -27,12 +27,10 @@
 
 int main()
 {
-
     //Inputs
     float numero1;
     float numero2;
     int opcion;
-
 
     //Outputs
     long double resultados[R];
@@ -51,6 +49,7 @@ int main()
 
     do
     {
+        system("cls");
         // Cargo el menu de opciones y recibo la respuesta del usuario por retorno
         opcion = menu(numero1, numero2, flagNumero1, flagNumero2);
 
@@ -59,14 +58,15 @@ int main()
         //Si la verificacion retorna 0, muestra un mensaje de error y vuelve al menu
         if(!(verificacion == 1))
         {
+            system("pause");
             continue;
         }
         if(flagOperaciones == 0 && opcion == 4)
         {
-            printf("\nDebe realizar los calculos antes de mostrar los resultados");
+            printf("\nDebe realizar los calculos antes de mostrar los resultados\n");
+            system("pause");
             continue;
         }
-
 
         // Se ejecuta la opcion ingresada por el usuario
         switch(opcion)
@@ -86,12 +86,12 @@ int main()
                 break;
             case 4:
                 mostrarResultados(resultados, R, numero2);
+                system("pause");
                 break;
             case 5:
                 break;
             default:
                 printf("\nLa opcion ingresada no es valida.\n");
-
         }
     }while(opcion != 5);
     return 0;
