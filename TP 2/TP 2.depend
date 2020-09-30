@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1601393425 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\entradaverificacion.c
+	<string.h>
+	<stdio.h>
+	<ctype.h>
+	"EntradaVerificacion.h"
+
+1601406747 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\entradaverificacion.h
+
+1601403748 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\estructuras.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Estructuras.h"
+	"EntradaVerificacion.h"
+	"Funcionalidades.h"
+
+1601406747 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\estructuras.h
+
+1600974395 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\funcionalidades.h
+
+1601348354 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\funcionalidades.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"EntradaVerificacion.h"
+	"Funcionalidades.h"
+
+1600217747 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\salida.c
+	<stdio.h>
+	<stdlib.h>
+
+1601317071 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\main.c
+	"Estructuras.h"
+
+1600217762 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\salida.h
+

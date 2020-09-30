@@ -1,15 +1,3 @@
-/*******************************************************************
-*Programa: Trabajo Practico 1: Calculadora
-*
-*Objetivo: Ingresar 2 numeros, realizar operacion de suma, resta, producto, division y factorial
- entre ambos numeros y mostrar los resultados al usuario. Realizar estas tareas hasta que el usuario decida salir
-
-
-*
-*Version:1.0 (09/09/2020)
-*Autor:Lucas Ferrini
-*
-********************************************************************/
 //Bibliotecas Oficiales
 #include <stdio.h>
 #include <stdlib.h>
