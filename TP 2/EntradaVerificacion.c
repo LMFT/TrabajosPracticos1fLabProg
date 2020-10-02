@@ -88,8 +88,24 @@ void InputString(char string[], int stringSize)
             {
                 string[i] = '\0';
             }
+
+            if(i == 0 || (string[i-1] == ' ' && string[i] != ' '))
+            {
+               string[i] = toupper(string[i]);
+            }
+            else
+            {
+                string[i] = tolower(string[i]);
+            }
         }
+
+
         numbers = ValidateStringOnlyText(string, stringSize);
+
+        if(numbers == 1)
+        {
+            printf("Este campo no acepta caracteres numericos\n");
+        }
 
     }while(numbers == 1);
 }
@@ -103,9 +119,14 @@ int ValidateStringOnlyText (char string[], int stringSize)
 
     for(i=0;i<stringSize; i++)
     {
-        if(isalpha(string[i])== 0)
+        if(isdigit(string[i])!= 0)
         {
             digitFound = 1;
+            break;
+        }
+
+        if(string[i] == '\0')
+        {
             break;
         }
     }

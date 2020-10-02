@@ -43,20 +43,26 @@ void InputArrayInt(int , int []);
 void InputArrayFloat(int, float []);
 
 
-/** \brief
+/** \brief Permite ingresar un string de caracteres alfabeticos
  *
- * \param [] char
- * \param int
- * \return void
+ * \param [] char Array a escribir
+ * \param int Tamaño del array
  *
  */
 void InputString(char [], int );
 
-/** \brief
+/** \brief Permite ingresar un caracter y validar que se haya ingresado un único caracter
  *
- * \return char
+ * \return char Caracter ingresado
  *
  */
 char InputChar();
 
+/** \brief Valida que un string contenga solamente caracteres alfabeticos
+ *
+ * \param [] char Array a validar
+ * \param int Tamaño del array
+ * \return La funcion retorna 0 si no encontró ni
+ *
+ */
 int ValidateStringOnlyText (char [], int);

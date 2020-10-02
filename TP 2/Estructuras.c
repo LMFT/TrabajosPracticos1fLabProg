@@ -12,11 +12,9 @@ Employee InputStruct() // Ingresar datos a una estructura
     Employee nuevoEmpleado;
 
     printf("Ingrese nombre: ");
-    fflush(stdin);
-    scanf("%[^\n]", nuevoEmpleado.nombre);
+    InputString(nuevoEmpleado.nombre, LEN);
     printf("Ingrese apellido: ");
-    fflush(stdin);
-    scanf("%[^\n]", nuevoEmpleado.apellido);
+    InputString(nuevoEmpleado.apellido, LEN);
     printf("Ingrese sector: ");
     nuevoEmpleado.sector = pedirNumeroEntero();
     printf("Ingrese sueldo: ");
@@ -28,22 +26,15 @@ Employee InputStruct() // Ingresar datos a una estructura
 
 int MemoryFull_Menu() // Menu de Memoria llena
 {
-
-    float opcion;
-    int comparacion;
+    int option;
 
     printf("\nLa memoria del porgrama se encuentra llena. Elija una opcion:");
     printf("\n1- Vaciar memoria");
     printf("\n2- Abortar");
     printf("\nElija una opcion: ");
-    opcion = pedirNumeroFlotante();
-    comparacion = opcion;
-    if(comparacion != opcion)
-    {
-        return -1;
-    }
-
-    return opcion;
+    option = pedirNumeroEntero();
+    fflush(stdin);  // Si se ingresa un numero con coma, queda almacenado el resto en el buffer de entrada, linea para borrar ese resto
+    return option;
 }
 
 
@@ -57,7 +48,7 @@ Employee* InitializeStructArray(Employee empleados[], int cant) // Inicializar u
         empleados[i].sector = 0;
         empleados[i].sueldo = 0;
 
-        for(j=0; j<51; j++)
+        for(j=0; j<LEN; j++)
         {
             empleados[i].nombre[j] = ' ';
             empleados[i].apellido[j] = ' ';
@@ -102,41 +93,18 @@ void ArrangeStructByTwoFactors(Employee employeeList[], int listSize)
         {
             if((strcmp(employeeList[i].apellido, employeeList[j].apellido) > 0 && employeeList[j].estado != 0))//criterio de ordenamiento
             {
-                aux.id = employeeList[i].sector;
-                employeeList[i].sector = employeeList[j].sector;
-                employeeList[j].sector = aux.sector;
+                aux = employeeList[i];
+                employeeList[i] = employeeList[j];
+                employeeList[j] = aux;
 
-                aux.sueldo = employeeList[i].sueldo;
-                employeeList[i].sueldo = employeeList[j].sueldo;
-                employeeList[j].sueldo = aux.sueldo;
-
-                strcpy(aux.nombre, employeeList[i].nombre);
-                strcpy(employeeList[i].nombre, employeeList[j].nombre);
-                strcpy(employeeList[j].nombre, aux.nombre);
-
-                strcpy(aux.apellido, employeeList[i].apellido);
-                strcpy(employeeList[i].apellido, employeeList[j].apellido);
-                strcpy(employeeList[j].apellido, aux.apellido);
             }
             else
             {
                 if(strcmp(employeeList[i].apellido, employeeList[j].apellido) == 0 && employeeList[i].sector > employeeList[j].sector)
                 {
-                    aux.id = employeeList[i].sector;
-                    employeeList[i].sector = employeeList[j].sector;
-                    employeeList[j].sector = aux.sector;
-
-                    aux.sueldo = employeeList[i].sueldo;
-                    employeeList[i].sueldo = employeeList[j].sueldo;
-                    employeeList[j].sueldo = aux.sueldo;
-
-                    strcpy(aux.nombre, employeeList[i].nombre);
-                    strcpy(employeeList[i].nombre, employeeList[j].nombre);
-                    strcpy(employeeList[j].nombre, aux.nombre);
-
-                    strcpy(aux.apellido, employeeList[i].apellido);
-                    strcpy(employeeList[i].apellido, employeeList[j].apellido);
-                    strcpy(employeeList[j].apellido, aux.apellido);
+                    aux = employeeList[i];
+                    employeeList[i] = employeeList[j];
+                    employeeList[j] = aux;
                 }
             }
         }
@@ -342,7 +310,7 @@ int ModifyEmployeeMenu()
     printf("1- Nombre\n");
     printf("2- Apellido\n");
     printf("3- Sueldo\n");
-    printf("4- Sector\n\n");
+    printf("4- Sector\n");
     printf("5- Multiples opciones\n");
     printf("6- Cancelar\n");
     printf("Ingrese una opcion: ");
@@ -357,6 +325,7 @@ Employee ModifyEmployeeOperations(Employee employeeParameter, int option)
     int aux[O]; // Para almacenar multiples operaciones
     int operationCounter;
     int i;
+
 
     i=0;
     operationCounter = 0;
@@ -387,7 +356,11 @@ Employee ModifyEmployeeOperations(Employee employeeParameter, int option)
                 employeeParameter.sector = pedirNumeroEntero();
                 break;
             case 5:
-                    printf("\nIngrese las operaciones que desea resolver:");
+                    printf("\nIngrese los campos que desea modificar:\n");
+                    printf("1- Nombre\n");
+                    printf("2- Apellido\n");
+                    printf("3- Sueldo\n");
+                    printf("4- Sector\n");
                 do
                 {
                     option = pedirNumeroEntero();
@@ -542,6 +515,7 @@ void MainMenu()
                 break;
              case 4: // Mostrar Datos
                 ShowEmployees(listaEmpleados, TAM);
+                system("pause");
                 break;
              case 5: // Salir
                 break;
@@ -549,5 +523,6 @@ void MainMenu()
                 printf("\nLa opcion ingresada no es valida");
                 break;
         }
+        system("cls");
     }while(opcion!=5); // Opcion de salida del programa
 }

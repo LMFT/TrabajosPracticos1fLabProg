@@ -1,13 +1,13 @@
 # depslib dependency file v1.0
-1601393425 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\entradaverificacion.c
+1601603957 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\entradaverificacion.c
 	<string.h>
 	<stdio.h>
 	<ctype.h>
 	"EntradaVerificacion.h"
 
-1601406747 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\entradaverificacion.h
+1601570190 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\entradaverificacion.h
 
-1601403748 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\estructuras.c
+1601604257 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\estructuras.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -17,9 +17,9 @@
 
 1601406747 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\estructuras.h
 
-1600974395 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\funcionalidades.h
+1601570253 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\funcionalidades.h
 
-1601348354 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\funcionalidades.c
+1601570253 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 2\funcionalidades.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
