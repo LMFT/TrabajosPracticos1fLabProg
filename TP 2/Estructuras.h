@@ -235,3 +235,12 @@ void ShowEmployeesOperations(Employee employeeList[], int listSize, int option);
  *
  */
 void ShowStructArray(Employee employeeList[], int listSize);
+
+/** \brief Verifica que haya datos cargados en un array
+ *
+ * \param Employee [] Array a verificar
+ * \param int Tamaño del array
+ * \return Retorna 0 si no se ingresaron datos, 1 si hay al menos un dato ingresado
+ *
+ */
+int VerifyInputs (Employee employeeList[], int listSize);

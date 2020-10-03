@@ -131,7 +131,7 @@ void ShowEmployees(Employee employeeList[], int listSize)
     int option;
     int inputs;
 
-    inputs = SearchEmptyPosition(employeeList, listSize); // Retorna 0 si no hay valores almacenados en el array
+    inputs = VerifyInputs(employeeList, listSize); // Retorna 0 si no hay valores almacenados en el array
 
     if(inputs == 0) // Si no hay ingresos no permite mostrar el listado
     {
@@ -258,7 +258,7 @@ void ModifyEmployee(Employee employeeList[], int listSize)
     Employee aux;
 
     i=0;
-    flag = SearchEmptyPosition(employeeList, listSize); // Si retorna 0 no hay empleados cargados en lista
+    flag = VerifyInputs(employeeList, listSize); // Si retorna 0 no hay empleados cargados en lista
 
     if(flag != 0)
     {
@@ -428,8 +428,9 @@ void RemoveEmployee(Employee employeeList[], int listSize)
     int id;
     int i;
     int inputs;
+    int flag;
 
-    inputs = SearchEmptyPosition(employeeList, listSize); // Retorna 0 si no hay datos cargados en el array
+    inputs = VerifyInputs(employeeList, listSize); // Retorna 0 si no hay datos cargados en el array
 
     i=0;
     if(inputs != 0)
@@ -441,9 +442,19 @@ void RemoveEmployee(Employee employeeList[], int listSize)
         {
             if(employeeList[i].id == id)
             {
-                employeeList[i]=InitializeStruct(employeeList[i]);
+                flag = 1;
+                break;
             }
         }
+        if(flag)
+        {
+                employeeList[i]=InitializeStruct(employeeList[i]);
+        }
+        else
+        {
+            printf("\nError: No se encuentra el ID ingresado");
+        }
+
     }
     else
     {
@@ -476,6 +487,8 @@ float GetAverage(Employee employeeList[], int listSize)
 void ShowOverParameter(Employee employeeList[], int listSize, float parameter)
 {
     int i;
+
+    printf("\nPromedio de sueldos: %.2f\n", parameter);
 
     for(i=0;i<listSize;i++)
     {
@@ -540,4 +553,22 @@ void EmployeeDatabase()
         }
         system("cls");
     }while(opcion!=5); // Opcion de salida del programa
+}
+
+int VerifyInputs (Employee employeeList[], int listSize)
+{
+    int i;
+    int inputs;
+
+    inputs = 0;
+
+    for(i=0;i<listSize;i++)
+    {
+        if(employeeList[i].estado)
+        {
+            inputs++;
+            break;
+        }
+    }
+    return inputs;
 }
