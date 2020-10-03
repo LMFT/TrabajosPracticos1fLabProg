@@ -188,9 +188,10 @@ float GetAverage(Employee [], int);
  *
  * \param [] Employee Listado de empleados a ordenar
  * \param  int Tamaño del array a ordenar
+ * \param int Opcion de ordenamiento ascendente o descendente
  *
  */
-void ArrangeStructByTwoFactors(Employee [], int );
+void ArrangeStructByTwoFactors(Employee [], int, int);
 
 /////////////////////////////////
 ///////Salida de datos//////////

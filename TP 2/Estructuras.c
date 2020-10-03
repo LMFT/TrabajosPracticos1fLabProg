@@ -95,31 +95,58 @@ void MemoryFull (Employee estructura[], int cant) // Funcionalidad de memoria ll
     }while(opcion != 2 || opcion != 1);
 }
 
-void ArrangeStructByTwoFactors(Employee employeeList[], int listSize)
+void ArrangeStructByTwoFactors(Employee employeeList[], int listSize, int option)
 {
     int i;
     int j;
     Employee aux;
 
-
-    for(i=0; i<listSize-1; i++)//NARANJA
+    if(option == 1)
     {
-        for(j=i+1; j<listSize; j++)//AZUL
+        for(i=0; i<listSize-1; i++)//NARANJA
         {
-            if((strcmp(employeeList[i].apellido, employeeList[j].apellido) > 0 && employeeList[j].estado != 0))//criterio de ordenamiento
+            for(j=i+1; j<listSize; j++)//AZUL
             {
-                aux = employeeList[i];
-                employeeList[i] = employeeList[j];
-                employeeList[j] = aux;
-
-            }
-            else
-            {
-                if(strcmp(employeeList[i].apellido, employeeList[j].apellido) == 0 && employeeList[i].sector > employeeList[j].sector)
+                if((strcmp(employeeList[i].apellido, employeeList[j].apellido) > 0 && employeeList[j].estado != 0))//criterio de ordenamiento
                 {
                     aux = employeeList[i];
                     employeeList[i] = employeeList[j];
                     employeeList[j] = aux;
+
+                }
+                else
+                {
+                    if(strcmp(employeeList[i].apellido, employeeList[j].apellido) == 0 && employeeList[i].sector > employeeList[j].sector)
+                    {
+                        aux = employeeList[i];
+                        employeeList[i] = employeeList[j];
+                        employeeList[j] = aux;
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        for(i=0; i<listSize-1; i++)//NARANJA
+        {
+            for(j=i+1; j<listSize; j++)//AZUL
+            {
+                if((strcmp(employeeList[i].apellido, employeeList[j].apellido) < 0 && employeeList[j].estado != 0))//criterio de ordenamiento
+                {
+                    aux = employeeList[i];
+                    employeeList[i] = employeeList[j];
+                    employeeList[j] = aux;
+
+                }
+                else
+                {
+                    if(strcmp(employeeList[i].apellido, employeeList[j].apellido) == 0 && employeeList[i].sector < employeeList[j].sector)
+                    {
+                        aux = employeeList[i];
+                        employeeList[i] = employeeList[j];
+                        employeeList[j] = aux;
+                    }
                 }
             }
         }
@@ -174,7 +201,20 @@ void ShowEmployeesOperations(Employee employeeList[], int listSize, int option)
     switch(option)
     {
         case 1: //Apellido y sector
-            ArrangeStructByTwoFactors(employeeList, listSize);
+            printf("\nComo desea ordenar el listado?");
+            printf("\n1- Orden Ascendente");
+            printf("\n2- Orden Descendente");
+            printf("\nIngrese una opcion: ");
+            do
+            {
+                option = pedirNumeroEntero();
+                fflush(stdin);
+                if(option != 1 && option != 2)
+                {
+                    printf("\nLa opcion ingresada no es valida. Reingrese la opcion: ");
+                }
+            }while(option != 1 && option != 2);
+            ArrangeStructByTwoFactors(employeeList, listSize, option);
             ShowStructArray(employeeList, listSize);
             break;
         case 2: // Promedio de sueldos y mostrar empleados por encima del promedio
