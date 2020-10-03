@@ -1,3 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "EntradaVerificacion.h"
+#include "Funcionalidades.h"
+
 #define LEN 51
 //Estructura de empleados
 typedef struct
@@ -13,6 +19,13 @@ typedef struct
 
 
 
+
+/** \brief Funcion principal del programa
+ *
+ *
+ */
+void EmployeeDatabase();
+
 /////////////////////////////////
 ///////Ingreso de datos/////////
 ///////////////////////////////
@@ -27,7 +40,6 @@ Employee InputStruct();
 ////////////Menus///////////////
 ///////////////////////////////
 
-void MainMenu();
 
 /** \brief Menu de la funcion MemoryFull. Permite elegir entre vaciar datos en memoria o abortar la operacion
  *

@@ -9,19 +9,34 @@
 
 Employee InputStruct() // Ingresar datos a una estructura
 {
-    Employee nuevoEmpleado;
+    Employee newEmployee;
 
     printf("Ingrese nombre: ");
-    InputString(nuevoEmpleado.nombre, LEN);
-    printf("Ingrese apellido: ");
-    InputString(nuevoEmpleado.apellido, LEN);
-    printf("Ingrese sector: ");
-    nuevoEmpleado.sector = pedirNumeroEntero();
-    printf("Ingrese sueldo: ");
-    nuevoEmpleado.sueldo = pedirNumeroFlotante();
-    nuevoEmpleado.estado = 1;
+    InputString(newEmployee.nombre, LEN);
 
-    return nuevoEmpleado;
+    printf("Ingrese apellido: ");
+    InputString(newEmployee.apellido, LEN);
+    do
+    {
+        printf("Ingrese sector: ");
+        newEmployee.sector = pedirNumeroEntero();
+        if(newEmployee.sector < 1)
+        {
+            printf("\nEl sector debe ser un numero mayor a 0. Reingrese el sector: ");
+        }
+    }while(newEmployee.sector < 1);
+    do
+    {
+        printf("Ingrese sueldo: ");
+        newEmployee.sueldo = pedirNumeroFlotante();
+        if(newEmployee.sueldo<1)
+        {
+            printf("\nDebe ingresar un salario positivo. Reingrese el salario");
+        }
+    }while(newEmployee.sueldo<1);
+    newEmployee.estado = 1;
+
+    return newEmployee;
 }
 
 int MemoryFull_Menu() // Menu de Memoria llena
@@ -448,7 +463,7 @@ float GetAverage(Employee employeeList[], int listSize)
     {
         if(employeeList[i].estado)
         {
-        sum += employeeList[i].sueldo;
+            sum += employeeList[i].sueldo;
         }
     }
 
@@ -481,7 +496,7 @@ void ShowStructArray(Employee employeeList[], int listSize)
     }
 }
 
-void MainMenu()
+void EmployeeDatabase()
 {
     //Estructuras
     Employee listaEmpleados[TAM];

@@ -2,7 +2,7 @@
 
 int main()
 {
-    MainMenu();
+    EmployeeDatabase();
 
     return 0;
 }
