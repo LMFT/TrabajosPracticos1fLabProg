@@ -446,7 +446,8 @@ void RemoveEmployee(Employee employeeList[], int listSize)
                 break;
             }
         }
-        if(flag)
+
+        if(flag && Confirmation())
         {
                 employeeList[i]=InitializeStruct(employeeList[i]);
         }
@@ -487,6 +488,9 @@ float GetAverage(Employee employeeList[], int listSize)
 void ShowOverParameter(Employee employeeList[], int listSize, float parameter)
 {
     int i;
+    int counter;
+
+    counter = 0;
 
     printf("\nPromedio de sueldos: %.2f\n", parameter);
 
@@ -495,8 +499,10 @@ void ShowOverParameter(Employee employeeList[], int listSize, float parameter)
         if(employeeList[i].sueldo > parameter)
         {
             ShowOneStruct(employeeList[i]);
+            counter++;
         }
     }
+    printf("\n\n Total de empleados por encima del promedio  de sueldo: %d", counter);
 }
 
 void ShowStructArray(Employee employeeList[], int listSize)
@@ -507,6 +513,7 @@ void ShowStructArray(Employee employeeList[], int listSize)
     {
         ShowOneStruct(employeeList[i]);
     }
+    printf("\n");
 }
 
 void EmployeeDatabase()
