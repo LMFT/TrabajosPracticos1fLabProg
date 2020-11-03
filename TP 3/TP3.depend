@@ -265,3 +265,59 @@
 
 1604183838 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 3\tp3\general_use.h
 
+1604428986 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 3\employee.c
+	"Employee.h"
+
+1604363604 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 3\employee.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"EntradaVerificacion.h"
+	"General_Use.h"
+
+1604367060 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 3\entradaverificacion.h
+
+1604183838 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 3\general_use.h
+
+1604366860 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 3\entradaverificacion.c
+	<string.h>
+	<stdio.h>
+	<ctype.h>
+	"EntradaVerificacion.h"
+	"General_Use.h"
+
+1604357492 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 3\general_use.c
+	<stdio.h>
+	"EntradaVerificacion.h"
+
+1604430000 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 3\main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+
+1603737252 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 3\linkedlist.h
+
+1604440628 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 3\controller.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	<ctype.h>
+	"Employee.h"
+	"parser.h"
+	"EntradaVerificacion.h"
+	"General_Use.h"
+
+1603737254 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 3\parser.h
+
+1604442091 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 3\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1604441982 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 3\controller.c
+	"Controller.h"
+

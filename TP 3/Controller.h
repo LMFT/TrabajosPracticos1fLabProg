@@ -45,3 +45,8 @@ int controller_loadFromBinary_VerifyDataLoaded(int dataLoaded, LinkedList* emplo
 int controller_LoadWithoutSaving(int changesMade);
 
 int controller_ConvertEmployeeDataToString(Employee* anEmployee, char id[], char name[], char hours[], char salary[]);
+
+int controller_loadLastId_Text(char* path, int* lastId);
+int controller_loadLastId_Binary(char* path, int* lastId);
+int controller_SaveLastId_Text(int* lastId, char* path);
+int controller_SaveLastId_Binary(int* lastId, char* path);

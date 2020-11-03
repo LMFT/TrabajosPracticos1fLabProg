@@ -9,6 +9,7 @@ int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
     retorno = 0;
 
     pFile = fopen(path, "r");
+
     if(pFile != NULL && path != NULL && pArrayListEmployee != NULL)
     {
         parser_EmployeeFromText(pFile, pArrayListEmployee);
@@ -28,17 +29,11 @@ int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
     retorno = 0;
 
     pFile = fopen(path, "rb");
-    if(pFile != NULL)
-    {
 
-        while(!feof(pFile))
-        {
-            if(pFile != NULL && path != NULL && pArrayListEmployee != NULL)
-            {
-                parser_EmployeeFromBinary(pFile, pArrayListEmployee);
-                retorno= 1;
-            }
-        }
+    if(pFile != NULL && path != NULL && pArrayListEmployee != NULL)
+    {
+        parser_EmployeeFromBinary(pFile, pArrayListEmployee);
+        retorno= 1;
     }
 
     fclose(pFile);
@@ -206,10 +201,10 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
     FILE* pFile;
     Employee* anEmployee;
     int i;
-    char id[10];
+    int id;
     char name[128];
-    char hoursWorked[10];
-    char salary[20];
+    int hoursWorked;
+    float salary;
     int retorno; // return variable
 
     retorno = 0;
@@ -221,9 +216,12 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
         for(i=0; i<ll_len(pArrayListEmployee); i++)
         {
             anEmployee = ll_get(pArrayListEmployee, i);
-            controller_ConvertEmployeeDataToString(anEmployee, id, name, hoursWorked, salary);
-            printf("%s, %s, %s, %s\n", id, name, hoursWorked, salary);
-            fprintf(pFile, "%s, %s, %s, %s\n", id, name, hoursWorked, salary);
+            employee_getId(anEmployee, &id);
+            employee_getNombre(anEmployee, name);
+            employee_getHorasTrabajadas(anEmployee, &hoursWorked);
+            employee_getSueldo(anEmployee, &salary);
+            printf("%d, %s, %d, %.2f\n", id, name, hoursWorked, salary);
+            fprintf(pFile, "%d, %s, %d, %.2f\n", id, name, hoursWorked, salary);
         }
         fclose(pFile);
         retorno = 1;
@@ -505,10 +503,12 @@ int controller_MainMenu_Operations(int option, LinkedList* employeeList, int dat
             {
                 case 1:
                     controller_loadFromText_VerifyDataLoaded(dataLoaded, employeeList);
+                    controller_loadLastId_Text("lastId.txt", lastId);
                     dataLoaded = 1;
                     break;
                 case 2:
                     controller_loadFromBinary_VerifyDataLoaded(dataLoaded, employeeList);
+                    controller_loadLastId_Binary("lastId.bin", lastId);
                     dataLoaded = 1;
                     break;
                 case 3:
@@ -529,11 +529,13 @@ int controller_MainMenu_Operations(int option, LinkedList* employeeList, int dat
                      controller_sortEmployee(employeeList);
                     break;
                 case 8:
-                    controller_saveAsText("data1.csv", employeeList);
+                    controller_saveAsText("data.csv", employeeList);
+                    controller_SaveLastId_Text(lastId, "lastId.txt");
                     dataLoaded = 0;
                     break;
                 case 9:
-                    controller_saveAsBinary("data1.dat", employeeList);
+                    controller_saveAsBinary("data.bin", employeeList);
+                    controller_SaveLastId_Binary(lastId, "lastId.bin");
                     dataLoaded = 0;
                     break;
                 case 10:
@@ -542,7 +544,6 @@ int controller_MainMenu_Operations(int option, LinkedList* employeeList, int dat
                     printf("\nLa opcion ingresada no es v%clida", 160);
 
             }
-            *lastId = controller_GetLastId(employeeList, *lastId);
         }
     }
     return dataLoaded;
@@ -556,7 +557,7 @@ int controller_loadFromText_VerifyDataLoaded(int dataLoaded, LinkedList* employe
     {
         if(dataLoaded == 0)
         {
-            controller_loadFromText("data1.csv", employeeList);
+            controller_loadFromText("data.csv", employeeList);
             retorno = 1;
         }
         else
@@ -575,7 +576,7 @@ int controller_loadFromBinary_VerifyDataLoaded(int dataLoaded, LinkedList* emplo
     {
         if(dataLoaded == 0)
         {
-            controller_loadFromBinary("data1.dat", employeeList);
+            controller_loadFromBinary("data.bin", employeeList);
             retorno = 1;
         }
         else
@@ -606,4 +607,73 @@ int controller_ConvertEmployeeDataToString(Employee* anEmployee, char id[], char
         conversion = 1;
     }
     return conversion;
+}
+
+int controller_loadLastId_Text(char* path, int* lastId)
+{
+    FILE* pFile;
+    int retorno;
+    retorno = 0;
+
+    pFile = fopen(path, "r");
+    if(pFile != NULL && path != NULL && lastId != NULL)
+    {
+        fscanf(pFile, "%d", lastId);
+        retorno = 1;
+    }
+    fclose(pFile);
+
+    return retorno;
+}
+
+int controller_loadLastId_Binary(char* path, int* lastId)
+{
+    FILE* pFile;
+    int retorno;
+
+    retorno = 0;
+
+    pFile = fopen(path, "rb");
+    if(pFile != NULL && path != NULL && lastId != NULL)
+    {
+        fread(lastId, sizeof(int),1,pFile);
+        retorno = 1;
+    }
+    fclose(pFile);
+
+    return retorno;
+}
+
+int controller_SaveLastId_Text(int* lastId, char* path)
+{
+    FILE* pFile;
+    int retorno;
+
+    retorno = 0;
+
+    pFile = fopen(path, "w");
+    if(path != NULL && pFile != NULL && lastId != NULL)
+    {
+        fprintf(pFile, "%d\n", *lastId);
+        retorno = 1;
+    }
+    fclose(pFile);
+    return retorno;
+}
+
+int controller_SaveLastId_Binary(int* lastId, char* path)
+{
+    FILE* pFile;
+    int retorno;
+
+    retorno = 0;
+
+    pFile = fopen(path, "wb");
+    if(path != NULL && pFile != NULL && lastId != NULL)
+    {
+        fwrite(lastId, sizeof(int), 1, pFile);
+        retorno = 1;
+    }
+    fclose(pFile);
+    return retorno;
 }

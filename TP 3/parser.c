@@ -20,8 +20,11 @@ int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
         {
             fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n", id, name, hours, salary);
             aux = employee_newParametros(id, name, hours, salary);
-            ll_add(pArrayListEmployee, aux);
-            assignedElements++;
+            if(aux != NULL)
+            {
+               ll_add(pArrayListEmployee, aux);
+                assignedElements++;
+            }
         }
     }
     return assignedElements;
