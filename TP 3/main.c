@@ -33,7 +33,7 @@ int main()
 
     do
     {
-        printf("\nLast ID: %d", lastId);
+        printf("Last ID: %d", lastId);
         option = controller_MainMenu();
 
         if((option == 1 || option == 2) && dataLoaded == 0)
@@ -59,8 +59,6 @@ int main()
 
 /*Errores detectados:
 
-1- El archivos .txt se guarda mal
-2- Archivo .bin lee basura
-3- Sorts en bucle infinito
+1- Archivo .bin lee basura
 
 */

@@ -46,6 +46,7 @@ int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
 int controller_addEmployee(LinkedList* pArrayListEmployee, int* lastId)
 {
     Employee* newEmployee;
+    int localMaxId;
     int addedEmployee;
     char id[10];
     char name[128];
@@ -58,7 +59,12 @@ int controller_addEmployee(LinkedList* pArrayListEmployee, int* lastId)
 
     if(pArrayListEmployee != NULL && lastId != NULL)
     {
-        *lastId = controller_GetLastId(pArrayListEmployee, *lastId);
+        localMaxId = controller_GetLastId(pArrayListEmployee, *lastId);
+        if(localMaxId > *lastId)
+        {
+            *lastId = localMaxId;
+        }
+        (*lastId)++;
         ev_InputString_Name(name, sizeof(name), "\nIngrese el nombre del empleado: ",
                              "\nEl nombre no puede contener numeros. Reingrese el nombre: ");
         ev_InputIntOverParameter("\nIngrese las horas trabajadas: ",
@@ -104,9 +110,12 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
             index = ll_indexOf(pArrayListEmployee, anEmployee);
             if(anEmployee != NULL)
             {
-                option = controller_editEmployee_Menu();
-                controller_editEmployee_Operations(pArrayListEmployee, anEmployee, option, index);
-                retorno = 1;
+                do
+                {
+                    option = controller_editEmployee_Menu();
+                    controller_editEmployee_Operations(pArrayListEmployee, anEmployee, option, index);
+                    retorno = 1;
+                }while(option!=4);
             }
             else
             {
@@ -216,12 +225,12 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
         for(i=0; i<ll_len(pArrayListEmployee); i++)
         {
             anEmployee = ll_get(pArrayListEmployee, i);
-            employee_getId(anEmployee, &id);
-            employee_getNombre(anEmployee, name);
-            employee_getHorasTrabajadas(anEmployee, &hoursWorked);
-            employee_getSueldo(anEmployee, &salary);
+            printf("\nGetter ID: %d", employee_getId(anEmployee, &id));
+            printf("\nGetter ID: %d", employee_getNombre(anEmployee, name));
+            printf("\nGetter ID: %d", employee_getHorasTrabajadas(anEmployee, &hoursWorked));
+            printf("\nGetter ID: %d\n", employee_getSueldo(anEmployee, &salary));
             printf("%d, %s, %d, %.2f\n", id, name, hoursWorked, salary);
-            fprintf(pFile, "%d, %s, %d, %.2f\n", id, name, hoursWorked, salary);
+            fprintf(pFile,"%d , %s , %d , %.2f\n", id, name, hoursWorked, salary);
         }
         fclose(pFile);
         retorno = 1;
@@ -274,7 +283,7 @@ int controller_GetMax(LinkedList* list, int* max)
             aux = ll_get(list, i);
             employee_getId(aux, &lastId);
         }
-        *max = lastId+1;
+        *max = lastId;
         retorno = 1;
     }
 
@@ -346,19 +355,22 @@ int controller_editEmployee_Menu()
     return option;
 }
 
-void controller_editEmployee_Operations(LinkedList* employeeList, Employee* pEmployee, int option, int index)
+int controller_editEmployee_Operations(LinkedList* employeeList, Employee* pEmployee, int option, int index)
 {
+    int modifiedEmployee;
+    modifiedEmployee = 0;
     if(employeeList != NULL && pEmployee != NULL)
     {
+
         switch(option)
         {
             case 1:
-                 employee_AssignNombre(pEmployee);
+                employee_AssignNombre(pEmployee);
                 break;
             case 2:
                 employee_AssignHorasTrabajadas(pEmployee);
-                break;
-            case 3:
+            break;
+                case 3:
                 employee_AssignSueldo(pEmployee);
                 break;
             case 4:
@@ -366,11 +378,17 @@ void controller_editEmployee_Operations(LinkedList* employeeList, Employee* pEmp
             default:
                 printf("\nLa opcion ingresada no es v%clida", 160);
         }
-        if(gu_Confirmation())
+
+        if(option!= 4)
         {
-            ll_set(employeeList, index, pEmployee);
+            if(gu_Confirmation())
+            {
+                ll_set(employeeList, index, pEmployee);
+                modifiedEmployee = 1;
+            }
         }
     }
+    return modifiedEmployee;
 }
 
 int controller_sortEmployee_Menu()
@@ -394,22 +412,25 @@ int controller_sortEmployee_Operations(int option, LinkedList* employeeList)
     if(employeeList != NULL)
     {
         sortedList = 1;
-        switch(option)
-        {
-            case 1: // ID
-                controller_sortEmployee_ById(employeeList);
-            case 2:// NOMBRE
-                controller_sortEmployee_ByName(employeeList);
-            case 3: // Horas
-                controller_sortEmployee_ByHours(employeeList);
-            case 4:// Sueldo
-                controller_sortEmployee_BySalary(employeeList);
-            case 5:// Salir
-                break;
-            default:
-                printf("\nLa opci%cn ingresada no es v%clida", 163, 160);
-                sortedList = 0;
-
+            switch(option)
+            {
+                case 1: // ID
+                    controller_sortEmployee_ById(employeeList);
+                    break;
+                case 2:// NOMBRE
+                    controller_sortEmployee_ByName(employeeList);
+                    break;
+                case 3: // Horas
+                    controller_sortEmployee_ByHours(employeeList);
+                    break;
+                case 4:// Sueldo
+                    controller_sortEmployee_BySalary(employeeList);
+                    break;
+                case 5:// Salir
+                    break;
+                default:
+                    printf("\nLa opci%cn ingresada no es v%clida", 163, 160);
+                    sortedList = 0;
         }
 
     }
@@ -432,7 +453,7 @@ int controller_sortEmployee_ById(LinkedList* employeeList)
 int controller_sortEmployee_ByName(LinkedList* employeeList)
 {
     int retorno; // return variable
-
+    printf("\nAntes del null");
     retorno = 0;
     if(employeeList != NULL)
     {
@@ -502,13 +523,11 @@ int controller_MainMenu_Operations(int option, LinkedList* employeeList, int dat
             switch(option)
             {
                 case 1:
-                    controller_loadFromText_VerifyDataLoaded(dataLoaded, employeeList);
-                    controller_loadLastId_Text("lastId.txt", lastId);
+                    controller_loadFromText_VerifyDataLoaded(dataLoaded, employeeList, lastId);
                     dataLoaded = 1;
                     break;
                 case 2:
-                    controller_loadFromBinary_VerifyDataLoaded(dataLoaded, employeeList);
-                    controller_loadLastId_Binary("lastId.bin", lastId);
+                    controller_loadFromBinary_VerifyDataLoaded(dataLoaded, employeeList, lastId);
                     dataLoaded = 1;
                     break;
                 case 3:
@@ -527,6 +546,7 @@ int controller_MainMenu_Operations(int option, LinkedList* employeeList, int dat
                     break;
                 case 7:
                      controller_sortEmployee(employeeList);
+                     printf("\nDespues de ordenar");
                     break;
                 case 8:
                     controller_saveAsText("data.csv", employeeList);
@@ -549,15 +569,16 @@ int controller_MainMenu_Operations(int option, LinkedList* employeeList, int dat
     return dataLoaded;
 }
 
-int controller_loadFromText_VerifyDataLoaded(int dataLoaded, LinkedList* employeeList)
+int controller_loadFromText_VerifyDataLoaded(int dataLoaded, LinkedList* employeeList, int* lastId)
 {
     int retorno;
     retorno = -1;
-    if(employeeList != NULL)
+    if(employeeList != NULL && lastId != NULL)
     {
         if(dataLoaded == 0)
         {
             controller_loadFromText("data.csv", employeeList);
+            controller_loadLastId_Text("lastId.txt", lastId);
             retorno = 1;
         }
         else
@@ -568,15 +589,16 @@ int controller_loadFromText_VerifyDataLoaded(int dataLoaded, LinkedList* employe
     return retorno;
 }
 
-int controller_loadFromBinary_VerifyDataLoaded(int dataLoaded, LinkedList* employeeList)
+int controller_loadFromBinary_VerifyDataLoaded(int dataLoaded, LinkedList* employeeList, int* lastId)
 {
     int retorno;
     retorno = -1;
-    if(employeeList != NULL)
+    if(employeeList != NULL && lastId != NULL)
     {
         if(dataLoaded == 0)
         {
             controller_loadFromBinary("data.bin", employeeList);
+            controller_loadLastId_Binary("lastId.bin", lastId);
             retorno = 1;
         }
         else
@@ -618,8 +640,11 @@ int controller_loadLastId_Text(char* path, int* lastId)
     pFile = fopen(path, "r");
     if(pFile != NULL && path != NULL && lastId != NULL)
     {
-        fscanf(pFile, "%d", lastId);
-        retorno = 1;
+        if(*lastId == 0)
+        {
+            fscanf(pFile, "%d", lastId);
+            retorno = 1;
+        }
     }
     fclose(pFile);
 

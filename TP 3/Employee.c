@@ -98,7 +98,7 @@ int employee_getNombre(Employee* this,char* nombre)
 
     if(this != NULL && nombre != NULL)
     {
-        strcpy(nombre, (*this).nombre);
+        strcpy(nombre, this->nombre);
         get = 1;
     }
     return get;
@@ -146,7 +146,7 @@ int employee_setSueldo(Employee* this,float sueldo)
     return set;
 }
 
-float employee_getSueldo(Employee* this,float* sueldo)
+int employee_getSueldo(Employee* this,float* sueldo)
 {
     int get;
 
@@ -165,20 +165,14 @@ int employee_CompareByName(void* e1, void* e2)
     int comparison;
     char name1[128];
     char name2[128];
-    int id1;
     comparison = -2;
-    //printf("\nEstoy fuera de la comparacion");
+
     if(e1 != NULL && e2 != NULL)
     {
-       // printf("\nEmpleados distintos de NULL");
         employee_getNombre(e1, name1);
-        employee_getId(e1, &id1);
-        printf("\nNombre Del e1: %s", name1);
-       // printf("\nNombre del empleado 1: %s", name1);
+
         employee_getNombre(e2, name2);
-       // printf("\nNombre del empleado 2: %s", name2);
         comparison = strcmp(name1, name2);
-       // printf("\nResultado del strcmp: %d", comparison);
     }
     return comparison;
 }

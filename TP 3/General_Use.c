@@ -34,17 +34,15 @@ int gu_CompareTwoInt (int number1, int number2)
 {
     int comparison;
 
-    if(number1 == number2)
+    comparison = 0;
+
+    if(number1<number2)
     {
-        comparison = 0;
+        comparison = -1;
     }
     else
     {
-        if(number1<number2)
-        {
-            comparison = -1;
-        }
-        else
+        if(number1 > number2)
         {
             comparison = 1;
         }

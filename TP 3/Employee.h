@@ -22,7 +22,7 @@ int employee_setHorasTrabajadas(Employee* this,int horasTrabajadas);
 int employee_getHorasTrabajadas(Employee* this,int* horasTrabajadas);
 
 int employee_setSueldo(Employee* this,float sueldo); // Cambio la firma de int sueldo a float sueldo, tiene mas sentido que se puedan incluir decimales
-float employee_getSueldo(Employee* this,float* sueldo); // Cambio la firma de int* sueldo a float* sueldo, tiene mas sentido que se puedan incluir decimales
+int employee_getSueldo(Employee* this,float* sueldo); // Cambio la firma de int* sueldo a float* sueldo, tiene mas sentido que se puedan incluir decimales
 
 int employee_CompareByName(void* e1, void* e2);
 int employee_CompareById(void* e1, void* e2);

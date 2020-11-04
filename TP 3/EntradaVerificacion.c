@@ -66,8 +66,8 @@ void ev_InputString_Name(char string[], int stringSize, char inputMessage[], cha
     do
     {
         gu_InitializeString(string, stringSize);
-        fflush(stdin);
         printf("\n%s", inputMessage);
+        fflush(stdin);
         fgets(string, stringSize, stdin);
 
         for(i=0;i<stringSize;i++)
@@ -81,7 +81,7 @@ void ev_InputString_Name(char string[], int stringSize, char inputMessage[], cha
             printf("\n%s", errorMessage);
         }
 
-    }while(ev_ValidateStringOnlyText(string, stringSize));
+    }while(ev_ValidateStringOnlyText(string, stringSize) || strcmp(string, "\0") == 0);
 }
 
 void ev_InputString_OnlyText(char string[], int stringSize, char inputMessage[], char errorMessage[])

@@ -27,7 +27,7 @@ int controller_GetLastId(LinkedList* this, int id);
 Employee* controller_SearchByID (LinkedList* this, int id);
 
 int controller_editEmployee_Menu();
-void controller_editEmployee_Operations(LinkedList* employeeList, Employee* pEmployee, int option, int index);
+int controller_editEmployee_Operations(LinkedList* employeeList, Employee* pEmployee, int option, int index);
 
 int controller_sortEmployee_Menu();
 int controller_sortEmployee_Operations(int option, LinkedList* employeeList);
@@ -39,8 +39,8 @@ int controller_sortEmployee_BySalary(LinkedList* employeeList);
 int controller_MainMenu();
 int controller_MainMenu_Operations(int option, LinkedList* employeeList, int dataLoaded, int* lastId);
 
-int controller_loadFromText_VerifyDataLoaded(int dataLoaded, LinkedList* employeeList);
-int controller_loadFromBinary_VerifyDataLoaded(int dataLoaded, LinkedList* employeeList);
+int controller_loadFromText_VerifyDataLoaded(int dataLoaded, LinkedList* employeeList, int* lastId);
+int controller_loadFromBinary_VerifyDataLoaded(int dataLoaded, LinkedList* employeeList, int* lastId);
 
 int controller_LoadWithoutSaving(int changesMade);
 
