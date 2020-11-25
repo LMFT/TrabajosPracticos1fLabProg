@@ -1,0 +1,88 @@
+# depslib dependency file v1.0
+1604965303 source:c:\users\lucas\onedrive\escritorio\linkedlist\src\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../testing/inc/main_test.h"
+	"../inc/LinkedList.h"
+
+1604940080 c:\users\lucas\onedrive\escritorio\linkedlist\testing\inc\main_test.h
+
+1604940072 c:\users\lucas\onedrive\escritorio\linkedlist\inc\linkedlist.h
+
+1604940072 source:c:\users\lucas\onedrive\escritorio\linkedlist\testing\utest.c
+	"utest.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1604940072 c:\users\lucas\onedrive\escritorio\linkedlist\testing\utest.h
+
+1604940072 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 4\tp 4\linkedlist\testing\utest.c
+	"utest.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1604940072 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 4\tp 4\linkedlist\testing\utest.h
+
+1604940084 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 4\tp 4\linkedlist\testing\src\addnodetest.c
+	"../../testing/utest.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../../inc/LinkedList.h"
+	"../../testing/inc/Employee.h"
+
+1604940072 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 4\tp 4\linkedlist\inc\linkedlist.h
+
+1604940078 c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 4\tp 4\linkedlist\testing\inc\employee.h
+
+1604940084 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 4\tp 4\linkedlist\testing\src\addtest.c
+	"../../testing/utest.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../../inc/LinkedList.h"
+	"../../testing/inc/Employee.h"
+
+1604940084 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 4\tp 4\linkedlist\testing\src\cleartest.c
+	"../../testing/utest.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../../inc/LinkedList.h"
+	"../../testing/inc/Employee.h"
+
+1604940086 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 4\tp 4\linkedlist\testing\src\clonetest.c
+	"../../testing/utest.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../../inc/LinkedList.h"
+	"../../testing/inc/Employee.h"
+
+1604940086 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 4\tp 4\linkedlist\testing\src\containsalltest.c
+	"../../testing/utest.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../../inc/LinkedList.h"
+	"../../testing/inc/Employee.h"
+
+1604940086 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 4\tp 4\linkedlist\testing\src\containstest.c
+	"../../testing/utest.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../../inc/LinkedList.h"
+	"../../testing/inc/Employee.h"
+
+1604940086 source:c:\users\lucas\onedrive\escritorio\curso programacion\laboratorio y programacion\practica\repositorios\tp_laboratorio_1\tp 4\tp 4\linkedlist\testing\src\deletelinkedlisttest.c
+	"../../testing/utest.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../../inc/LinkedList.h"
+	"../../testing/inc/Employee.h"
+
