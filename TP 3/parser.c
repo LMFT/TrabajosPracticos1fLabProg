@@ -1,64 +1,68 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "LinkedList.h"
-#include "Employee.h"
+#include "parser.h"
 
-int parser_EmployeeFromText(FILE* pFile, LinkedList* pArrayListEmployee)
+/** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo texto).
+ *
+ * \param path char*
+ * \param pArrayListEmployee LinkedList*
+ * \return int
+ *
+ */
+int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 {
-    char id[6];
-    char name[128];
-    char hours[6];
-    char salary[10];
-    int assignedElements;
-    Employee* aux;
-
-    assignedElements = 0;
+    int elementsAdded = -1;
+    char parsedId[9];
+    char parsedHours[5];
+    char parsedSalary[9];
+    char parsedName[128];
+    Employee* new;
 
     if(pFile != NULL && pArrayListEmployee != NULL)
     {
+        elementsAdded = 0;
+        fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n", parsedId, parsedName, parsedHours, parsedSalary);
         while(!feof(pFile))
         {
-            fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n", id, name, hours, salary);
-            printf("\n%s %s %s %s\n", id, name, hours, salary);
-
-            aux = employee_newParametros(id, name, hours, salary);
-            if(aux != NULL)
-            {
-               ll_add(pArrayListEmployee, aux);
-                assignedElements++;
-            }
+            fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n", parsedId, parsedName, parsedHours, parsedSalary);
+            new = employee_newParametros(parsedId, parsedName, parsedHours, parsedSalary);
+            ll_add(pArrayListEmployee, new);
+            elementsAdded++;
         }
     }
-    return assignedElements;
-
+    return elementsAdded;
 }
 
-int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
+/** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo binario).
+ *
+ * \param path char*
+ * \param pArrayListEmployee LinkedList*
+ * \return int
+ *
+ */
+int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 {
-    int assignedElement;
-    Employee* pEmployee;
-
-    assignedElement = 0;
+    int elementsAdded = -1;
+    int id;
+    Employee* new;
 
     if(pFile != NULL && pArrayListEmployee != NULL)
     {
+
+        elementsAdded = 0;
         while(!feof(pFile))
         {
-            pEmployee = employee_new();
-            if(pEmployee != NULL)
+            new = employee_new();
+            if(new != NULL)
             {
-                fread(pEmployee, sizeof(Employee), 1, pFile);
-                if(!feof(pFile))
+                fread(new, sizeof(Employee), 1, pFile);
+                employee_getId(new, &id);
+                if(id == 0)
                 {
-                    ll_add(pArrayListEmployee, pEmployee);
+                    continue;
                 }
+                ll_add(pArrayListEmployee, new);
+                elementsAdded++;
             }
-            if(assignedElement == 0)
-            {
-                ll_remove(pArrayListEmployee, 0);
-            }
-        assignedElement++;
         }
     }
-    return assignedElement;
+    return elementsAdded;
 }

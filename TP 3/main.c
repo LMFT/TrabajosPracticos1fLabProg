@@ -1,8 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
+
 #include "LinkedList.h"
 #include "Controller.h"
 #include "Employee.h"
+
 
 /****************************************************
     Menu:
@@ -19,46 +19,108 @@
 *****************************************************/
 
 
+
 int main()
 {
-    LinkedList* employeeList;
-    int lastId;
+    LinkedList* employeeList = ll_newLinkedList();
     int option;
-    int dataLoaded;
-
-
-    dataLoaded = 0;
-    lastId = 0;
-    employeeList = ll_newLinkedList();
+    bool loadedData = false;
+    bool savedModifications = true;
 
     do
     {
-        printf("Last ID: %d", lastId);
-        option = controller_MainMenu();
+        option = Ui_CreateMenu("Menu principal", "\nIngrese una opcion: ", 10, "Cargar datos de empleados desde archivo de texto",
+                                                                                "Cargar datos de empleados desde archivo binario",
+                                                                                 "Alta de empleado",
+                                                                                 "Editar empleado",
+                                                                                 "Baja de empleado",
+                                                                                 "Listar empleados",
+                                                                                 "Ordenar empleados",
+                                                                                 "Guardar empleados en archivo de texto",
+                                                                                 "Guardar empleados en archivo binario",
+                                                                                 "Salir");
 
-        if((option == 1 || option == 2) && dataLoaded == 0)
+        switch(option)
         {
-            employeeList = ll_newLinkedList();
+            case 1: // cargar texto
+                if((loadedData == true&&
+                   Input_Confirmation("\nYa hay elementos cargados en la lista. Si procede, cualquier modificacion no guardada se perder%c. Desea continuar? s/n: ",
+                                      "Esta respuesta no es valida", 's', 'n', 160)) || loadedData == false)
+                {
+                    ll_clear(employeeList);
+                    controller_loadFromText("data_prueba.csv", employeeList);
+                    controller_loadLastId("last_id2.bin");
+                    printf("\n%d", employee_getLastId());
+                    loadedData = true;
+                }
+                break;
+            case 2: // cargar binario
+                if((loadedData == true&&
+                   Input_Confirmation("\nYa hay elementos cargados en la lista. Si procede, cualquier modificacion no guardada se perder%c. Desea continuar? s/n: ",
+                                      "Esta respuesta no es valida", 's', 'n', 160)) || loadedData == false)
+                {
+                    ll_clear(employeeList);
+                    controller_loadFromBinary("data_prueba.bin", employeeList);
+                    controller_loadLastId("last_id2.bin");
+                    printf("\n%d", employee_getLastId());
+                    loadedData = true;
+                }
+                break;
+            case 3: // a
+                controller_addEmployee(employeeList);
+                savedModifications = false;
+                break;
+            case 4: // m
+                controller_editEmployee(employeeList);
+                savedModifications = false;
+                break;
+            case 5: // b
+                controller_removeEmployee(employeeList);
+                savedModifications = false;
+                break;
+            case 6: // mostrar
+                controller_ListEmployee(employeeList);
+                break;
+            case 7: // ordenar
+                controller_sortEmployee(employeeList);
+                savedModifications = false;
+                break;
+            case 8: // guardar texto
+                controller_saveAsText("data_prueba.csv", employeeList);
+                controller_saveLastId("last_id.bin");
+                savedModifications = true;
+                break;
+            case 9: // guardar binario
+                controller_saveAsBinary("data_prueba.bin", employeeList);
+                controller_saveLastId("last_id2.bin");
+                savedModifications = true;
+                break;
+            case 10: // salir
+                if(savedModifications == true)
+                {
+                    ll_deleteLinkedList(employeeList);
+                }
+                else
+                {
+                    if(Input_Confirmation("\nTiene elementos sin guardar. Esta seguro que desea salir? s/n: ",
+                                      "Esta respuesta no es valida", 's', 'n', 160))
+                    {
+                             ll_deleteLinkedList(employeeList);
+                    }
+                    else
+                    {
+                        option = 0;
+                    }
+                }
+            break;
+            default:
+                printf("\nOpci%cn inv%clida", 162, 160);
         }
-        dataLoaded =  controller_MainMenu_Operations(option, employeeList, dataLoaded, &lastId);
-        if((option == 8 || option == 9) && dataLoaded == 1)
-        {
-            ll_deleteLinkedList(employeeList);
-        }
-
-        if(option != 10)
-        {
-            system("pause");
-            system("cls");
-        }
-
+        printf("\n");
+        system("pause");
+        system("cls");
     }while(option != 10);
 
     return 0;
 }
 
-/*Errores detectados:
-
-1- Archivo .bin lee basura
-
-*/

@@ -1,274 +1,354 @@
 #include "Employee.h"
 
+static int lastId = 0;
+
+int employee_setLastId(int id)
+{
+    lastId = id;
+    return lastId;
+}
+
+int employee_getLastId()
+{
+    return lastId;
+}
+
+int employee_increaseLastId()
+{
+    lastId++;
+    return lastId;
+}
+
+int employee_decreaseLastId()
+{
+    lastId--;
+    return lastId;
+}
 
 Employee* employee_new()
 {
-    Employee* employeeParameter;
-
-    employeeParameter = (Employee*)malloc(sizeof (Employee));
-
-    return employeeParameter;
+    Employee* new = (Employee*)calloc(1, sizeof(Employee));
+    return new;
 }
 
-Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr,char* sueldoStr)
+Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char* salarioStr) // Consultar por salario
 {
-    Employee* newEmployee;
-    if(idStr != NULL && nombreStr != NULL && horasTrabajadasStr != NULL && sueldoStr != NULL)
+    int id;
+    int hoursWorked;
+    int salary;
+    Employee* new;
+
+    if(idStr != NULL && nombreStr != NULL && horasTrabajadasStr != NULL && salarioStr != NULL)
     {
-        newEmployee = employee_new();
-
-        if(employee_setId(newEmployee,atoi(idStr)))
+        new = employee_new();
+        if(new != NULL)
         {
-            if(employee_setNombre(newEmployee,nombreStr))
-            {
-                if(employee_setHorasTrabajadas(newEmployee,atoi(horasTrabajadasStr)))
-                {
-                    if(employee_setSueldo(newEmployee,atof(sueldoStr)))
-                    {
-
-                    }
-                }
-            }
+            id = atoi(idStr);
+            hoursWorked = atoi(horasTrabajadasStr);
+            salary = atoi(salarioStr);
+            employee_setHorasTrabajadas(new, hoursWorked);
+            employee_setId(new, id);
+            employee_setNombre(new, nombreStr);
+            employee_setSueldo(new, salary);
         }
     }
-    else
-    {
-        newEmployee = NULL;
-    }
-
-    return newEmployee;
+    return new;
 }
 
-void employee_delete(Employee* this)
+Employee* employee_newSetted() // Consultar por salario
 {
-    if(this != NULL)
+    Employee* new;
+    int id;
+    int hoursWorked;
+    int salary;
+    char name[128];
+
+    new = employee_new();
+    if(new != NULL)
     {
-        free(this);
+        fflush(stdin);
+        Input_String_Name(name, 128,"Ingrese el nombre del empleado: ", "Este campo no acepta numeros");
+        Input_IntOverValue(&hoursWorked, "Ingrese las horas trabajadas: ", 0, "Las horas trabajadas deben ser mayores a 0");
+        Input_IntOverValue(&salary, "Ingrese el salario: ", 0, "El salario debe ser mayor a 0");
+        id = employee_increaseLastId();
+        employee_setHorasTrabajadas(new, hoursWorked);
+        employee_setId(new, id);
+        employee_setNombre(new, name);
+        employee_setSueldo(new, salary);
     }
+    return new;
+}
+
+void employee_delete()
+{
+
 }
 
 int employee_setId(Employee* this,int id)
 {
-    int set;
+    int set = -1;
 
-    set = 0;
-
-    if(this!=NULL && id>0)
+    if(this != NULL)
     {
-        set = 1;
-        this->id =id;
+        this->id = id;
+        set = 0;
     }
     return set;
 }
 
 int employee_getId(Employee* this,int* id)
 {
-    int get;
-
-    get = 0;
+    int get = -1;
 
     if(this != NULL && id != NULL)
     {
         *id = this->id;
-        get = 1;
+        get = 0;
     }
     return get;
 }
 
-
-
 int employee_setNombre(Employee* this,char* nombre)
 {
-    int set;
+    int set = -1;
 
-    set = 0;
-
-    if(this!=NULL && nombre != NULL)
+    if(this != NULL)
     {
-        set = 1;
         strcpy(this->nombre, nombre);
+        set = 0;
     }
     return set;
 }
+
 int employee_getNombre(Employee* this,char* nombre)
 {
-    int get;
-
-    get = 0;
+    {
+    int get = -1;
 
     if(this != NULL && nombre != NULL)
     {
         strcpy(nombre, this->nombre);
-        get = 1;
+        get = 0;
     }
     return get;
 }
 
+}
+
 int employee_setHorasTrabajadas(Employee* this,int horasTrabajadas)
 {
-    int set;
+    int set = -1;
 
-    set = 0;
-
-    if(this!=NULL && horasTrabajadas>0)
+    if(this != NULL)
     {
-        set = 1;
-        this->horasTrabajadas =horasTrabajadas;
+        this->horasTrabajadas = horasTrabajadas;
+        set = 0;
     }
     return set;
 }
 
 int employee_getHorasTrabajadas(Employee* this,int* horasTrabajadas)
-{
-    int get;
 
-    get = 0;
+{
+    int get = -1;
 
     if(this != NULL && horasTrabajadas != NULL)
     {
         *horasTrabajadas = this->horasTrabajadas;
-        get = 1;
+        get = 0;
     }
     return get;
 }
 
-int employee_setSueldo(Employee* this,float sueldo)
+
+int employee_setSueldo(Employee* this,int sueldo)
 {
-    int set;
+    int set = -1;
 
-    set = 0;
-
-    if(this!=NULL && sueldo>0)
+    if(this != NULL)
     {
-        set = 1;
-        this->sueldo =sueldo;
+        this->sueldo = sueldo;
+        set = 0;
     }
     return set;
 }
 
-int employee_getSueldo(Employee* this,float* sueldo)
+int employee_getSueldo(Employee* this,int* sueldo)
 {
-    int get;
-
-    get = 0;
+    int get = -1;
 
     if(this != NULL && sueldo != NULL)
     {
         *sueldo = this->sueldo;
-        get = 1;
+        get = 0;
     }
     return get;
 }
 
-int employee_CompareByName(void* e1, void* e2)
+int employee_printOne(Employee* myEmployee)
 {
-    int comparison;
-    char name1[128];
-    char name2[128];
-    comparison = -2;
+    int printedEmployee = -1;
+    int id;
+    char name[128];
+    int hoursWorked;
+    int salary;
 
-    if(e1 != NULL && e2 != NULL)
+    if(myEmployee != NULL)
     {
-        employee_getNombre(e1, name1);
-
-        employee_getNombre(e2, name2);
-        comparison = strcmp(name1, name2);
+        if(!employee_getHorasTrabajadas(myEmployee, &hoursWorked))
+        {
+            if(!employee_getId(myEmployee, &id))
+            {
+                if(!employee_getNombre(myEmployee, name))
+                {
+                    if(!employee_getSueldo(myEmployee, &salary))
+                    {
+                        printf("\n%d %s %d %d", id, name, hoursWorked, salary);
+                        printedEmployee = 0;
+                    }
+                }
+            }
+        }
     }
-    return comparison;
+    return printedEmployee;
 }
 
-int employee_CompareById(void* e1, void* e2)
+int employee_compareById(void* firstEmployee, void* secondEmployee)
 {
-    int comparison;
+    Employee* e1;
+    Employee* e2;
+    int comparison = -2;
     int id1;
     int id2;
 
-    comparison = -2;
-    if(e1 != NULL && e2 != NULL)
+    if(firstEmployee != NULL && secondEmployee != NULL)
     {
-        employee_getId(e1, &id1);
-        employee_getId(e2, &id2);
-        comparison = gu_CompareTwoInt(id1, id2);
-    }
+        e1 = (Employee*)firstEmployee;
+        e2 = (Employee*)secondEmployee;
 
+        if(!employee_getId(e1, &id1))
+        {
+            if(!employee_getId(e2, &id2))
+            {
+                if(id1 < id2)
+                {
+                    comparison = -1;
+                }
+                else
+                {
+                    comparison = 0;
+                    if(id1 > id2)
+                    {
+                        comparison = 1;
+                    }
+                }
+            }
+        }
+    }
     return comparison;
 }
 
-int employee_AssignNombre(Employee* pEmployee)
+int employee_compareByName(void* firstEmployee, void* secondEmployee)
 {
-    char name[128];
-    int retorno;
-    retorno = 0;
-    if(pEmployee != NULL && name != NULL)
+    Employee* e1;
+    Employee* e2;
+    int comparison = -2;
+    char name1[128];
+    char name2[128];
+
+    if(firstEmployee != NULL && secondEmployee != NULL)
     {
-        ev_InputString_Name(name, sizeof(name), "\nIngrese el nombre del empleado: ",
-                                 "\nEl nombre no puede contener numeros. Reingrese el nombre: ");
-        employee_setNombre(pEmployee, name);
-        retorno = 1;
+        e1 = (Employee*)firstEmployee;
+        e2 = (Employee*)secondEmployee;
+
+        if(!employee_getNombre(e1, name1))
+        {
+            if(!employee_getNombre(e2, name2))
+            {
+                comparison = strcmp(name1, name2);
+                if(comparison < -1)
+                {
+                    comparison = -1;
+                }
+                else
+                {
+                    if(comparison>1)
+                    {
+                        comparison = 1;
+                    }
+                }
+            }
+        }
     }
-    return retorno;
+    return comparison;
 }
 
-int employee_AssignHorasTrabajadas(Employee* pEmployee)
+int employee_compareByHoursWorked(void* firstEmployee, void* secondEmployee)
 {
-    int hoursWorked;
-    int retorno;
-
-    retorno = 0;
-    if(pEmployee != NULL)
-    {
-        ev_InputIntOverParameter("\nIngrese las horas trabajadas: ",
-                                     "\nLas horas trabajadas deben ser mayores a 0. Reingrese las horas: ",
-                                     &hoursWorked, 0);
-        employee_setHorasTrabajadas(pEmployee, hoursWorked);
-        retorno = 1;
-    }
-    return retorno;
-}
-
-int employee_AssignSueldo(Employee* pEmployee)
-{
-    float salary;
-    int retorno; // return variable
-
-    retorno = 0;
-    if(pEmployee != NULL)
-    {
-        ev_InputFloatOverParameter("\nIngrese el sueldo: ",
-                                 "\nEl sueldo debe ser mayor a 0. Reingrese el sueldo: ",&salary, 0);
-        employee_setSueldo(pEmployee, salary);
-        retorno = 1;
-    }
-    return retorno;
-}
-
-int employee_CompareByHours(void* e1, void* e2)
-{
-    int comparison;
+    Employee* e1;
+    Employee* e2;
+    int comparison = -2;
     int hours1;
     int hours2;
-    comparison = -2;
-    if(e1 != NULL && e2 != NULL)
+
+    if(firstEmployee != NULL && secondEmployee != NULL)
     {
-        employee_getHorasTrabajadas(e1, &hours1);
-        employee_getHorasTrabajadas(e2, &hours2);
-        comparison = gu_CompareTwoInt(hours1, hours2);
+        e1 = (Employee*)firstEmployee;
+        e2 = (Employee*)secondEmployee;
+
+        if(!employee_getHorasTrabajadas(e1, &hours1))
+        {
+            if(!employee_getHorasTrabajadas(e2, &hours2))
+            {
+                if(hours1 < hours2)
+                {
+                    comparison = -1;
+                }
+                else
+                {
+                    comparison = 0;
+                    if(hours1 > hours2)
+                    {
+                        comparison = 1;
+                    }
+                }
+            }
+        }
     }
     return comparison;
 }
 
-int employee_CompareBySalary(void* e1, void* e2)
+int employee_compareBySalary(void* firstEmployee, void* secondEmployee)
 {
-    int comparison;
-    float salary1;
-    float salary2;
+    Employee* e1;
+    Employee* e2;
+    int comparison = 2;
+    int salary1;
+    int salary2;
 
-    comparison = -2;
-    if(e1 != NULL && e2 != NULL)
+    if(firstEmployee != NULL && secondEmployee != NULL)
     {
-        employee_getSueldo(e1, &salary1);
-        employee_getSueldo(e2, &salary2);
-        comparison = gu_CompareTwoFloat(salary1, salary2);
+        e1 = (Employee*)firstEmployee;
+        e2 = (Employee*)secondEmployee;
+
+        if(!employee_getSueldo(e1, &salary1))
+        {
+            if(!employee_getSueldo(e2, &salary2))
+            {
+                if(salary1 < salary2)
+                {
+                    comparison = -1;
+                }
+                else
+                {
+                    comparison = 0;
+                    if(salary1 > salary2)
+                    {
+                        comparison = 1;
+                    }
+                }
+            }
+        }
     }
     return comparison;
 }
