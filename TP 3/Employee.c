@@ -79,9 +79,16 @@ Employee* employee_newSetted() // Consultar por salario
     return new;
 }
 
-void employee_delete()
+int employee_delete(Employee* this)
 {
+    int deletedEmployee = -1;
 
+    if(this != NULL)
+    {
+        free(this);
+        deletedEmployee = 0;
+    }
+    return deletedEmployee;
 }
 
 int employee_setId(Employee* this,int id)
