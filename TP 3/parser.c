@@ -10,6 +10,7 @@
 int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 {
     int elementsAdded = -1;
+    int returnAux;
     char parsedId[9];
     char parsedHours[5];
     char parsedSalary[9];
@@ -22,10 +23,16 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
         fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n", parsedId, parsedName, parsedHours, parsedSalary);
         while(!feof(pFile))
         {
-            fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n", parsedId, parsedName, parsedHours, parsedSalary);
-            new = employee_newParametros(parsedId, parsedName, parsedHours, parsedSalary);
-            ll_add(pArrayListEmployee, new);
-            elementsAdded++;
+            returnAux = fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n", parsedId, parsedName, parsedHours, parsedSalary);
+            if(returnAux == 4)
+            {
+                new = employee_newParametros(parsedId, parsedName, parsedHours, parsedSalary);
+                if(new != NULL && !ll_contains(pArrayListEmployee, new))
+                {
+                    ll_add(pArrayListEmployee, new);
+                    elementsAdded++;
+                }
+            }
         }
     }
     return elementsAdded;
@@ -41,7 +48,8 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 {
     int elementsAdded = -1;
-    int id;
+    int returnAux;
+
     Employee* new;
 
     if(pFile != NULL && pArrayListEmployee != NULL)
@@ -53,14 +61,13 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
             new = employee_new();
             if(new != NULL)
             {
-                fread(new, sizeof(Employee), 1, pFile);
-                employee_getId(new, &id);
-                if(id == 0)
+                returnAux = fread(new, sizeof(Employee), 1, pFile);
+                if(returnAux == 1 && !ll_contains(pArrayListEmployee, new))
                 {
-                    continue;
+                    ll_add(pArrayListEmployee, new);
+                    elementsAdded++;
                 }
-                ll_add(pArrayListEmployee, new);
-                elementsAdded++;
+
             }
         }
     }

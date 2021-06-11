@@ -9,7 +9,7 @@ int Ui_CreateMenu(char header[],char inputMsg[], int amountOfOptions, ...)
     if(header != NULL && inputMsg != NULL && amountOfOptions >0)
     {
         va_start(options, amountOfOptions);
-        printf("\n%s", header);
+        printf("\n%s\n", header);
         for(i=1;i<=amountOfOptions;i++)
         {
             printf("\n%d- %s", i, va_arg(options, char*));

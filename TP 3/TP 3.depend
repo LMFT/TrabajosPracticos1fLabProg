@@ -1,16 +1,14 @@
 # depslib dependency file v1.0
-1622847713 source:c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\controller.c
+1623106492 source:c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\controller.c
 	"Controller.h"
 
 1565993298 c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\linkedlist.h
 
-1622833474 c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\employee.h
+1623168337 c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\employee.h
 	"Input.h"
 
-1622847840 source:c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\main.c
-	"LinkedList.h"
+1623104648 source:c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\main.c
 	"Controller.h"
-	"Employee.h"
 
 1622846519 c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\controller.h
 	"Input.h"
@@ -19,10 +17,10 @@
 	"parser.h"
 	"Ui.h"
 
-1622822584 source:c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\parser.c
+1623103825 source:c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\parser.c
 	"parser.h"
 
-1622845795 source:c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\employee.c
+1623105192 source:c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\employee.c
 	"Employee.h"
 
 1622160573 source:c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\comparison.c
@@ -44,7 +42,7 @@
 1622845777 c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\input.h
 	"Text.h"
 
-1622845810 source:c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\input.c
+1623101769 source:c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\input.c
 	"Input.h"
 
 1622775841 c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\parser.h
@@ -54,6 +52,6 @@
 1622844535 c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\ui.h
 	"Input.h"
 
-1622844568 source:c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\ui.c
+1623103597 source:c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\ui.c
 	"Ui.h"
 

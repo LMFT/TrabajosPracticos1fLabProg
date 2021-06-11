@@ -323,4 +323,3 @@ int Input_String_Name(char name[],int sizeOfString, char inputMsg[], char number
     }while(input);
     return input;
 }
-

@@ -15,16 +15,31 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 {
     int gotData = -2;
     FILE* pFile;
+    int tempInt = ll_isEmpty(pArrayListEmployee);
 
-    if(pArrayListEmployee != NULL && path != NULL)
+    if(tempInt != -1 && path != NULL)
     {
-        pFile = fopen(path,"r");
-        if(pFile != NULL)
+        if(!tempInt)
         {
-            gotData = parser_EmployeeFromText(pFile, pArrayListEmployee);
-            printf("\nDatos cargados exitosamente");
+            printf("\nYa existen elementos cargados en la lista. Si continua, se perder%cn los datos no guardados", 160);
+            if(Input_Confirmation("\nDesea continuar? s/n: ", "Esta opcion no es valida", 's', 'n'))
+            {
+                ll_clear(pArrayListEmployee);
+                tempInt = 1;
+            }
         }
-        fclose(pFile);
+        if(tempInt == 1)
+        {
+
+            pFile = fopen(path,"r");
+            if(pFile != NULL)
+            {
+                gotData = parser_EmployeeFromText(pFile, pArrayListEmployee);
+                printf("\nDatos cargados exitosamente");
+                fclose(pFile);
+            }
+        }
+
     }
     return gotData;
 }
@@ -40,14 +55,27 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 {
     int gotData = -1;
     FILE* pFile;
+    int tempInt = ll_isEmpty(pArrayListEmployee);
 
-    if(path != NULL && pArrayListEmployee != NULL)
+    if(path != NULL && tempInt != -1)
     {
-        pFile = fopen(path, "rb");
-        if(pFile != NULL)
+        if(!tempInt)
         {
-            gotData = parser_EmployeeFromBinary(pFile, pArrayListEmployee);
-            printf("\nDatos cargados exitosamente");
+            printf("\nYa existen elementos cargados en la lista. Si continua, se perder%cn los datos no guardados", 160);
+            if(Input_Confirmation("\nDesea continuar? s/n: ", "Esta opcion no es valida", 's', 'n'))
+            {
+                ll_clear(pArrayListEmployee);
+                tempInt = 1;
+            }
+        }
+        if(tempInt == 1)
+        {
+            pFile = fopen(path, "rb");
+            if(pFile != NULL)
+            {
+                gotData = parser_EmployeeFromBinary(pFile, pArrayListEmployee);
+                printf("\nDatos cargados exitosamente");
+            }
         }
         fclose(pFile);
     }
@@ -64,13 +92,16 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
     int addedEmployee = -3;
+    int employeeId;
     Employee* new;
 
-    if(pArrayListEmployee != NULL)
+    if(ll_isEmpty(pArrayListEmployee) >=0)
     {
-        new = employee_newSetted();
+        new = employee_newSet();
         if(new != NULL)
         {
+            employeeId = employee_increaseLastId();
+            employee_setId(new, employeeId);
             employee_printOne(new);
             if(Input_Confirmation("\nDesea confirmar este ingreso? s/n: ", "\nOpcion invalida", 's', 'n', 162, 160))
             {
@@ -111,49 +142,46 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
     Employee* target;
     Employee* modifiedEmployee;
 
-    if(pArrayListEmployee != NULL)
+    if(!ll_isEmpty(pArrayListEmployee))
     {
-        if(!ll_isEmpty(pArrayListEmployee))
+        controller_ListEmployee(pArrayListEmployee);
+        Input_Int(&targetId, "\nIngrese el ID del empleado que desea editar: ");
+        index = controller_searchEmployee(pArrayListEmployee, targetId);
+        if(index>=0)
         {
-            controller_ListEmployee(pArrayListEmployee);
-            Input_Int(&targetId, "\nIngrese el ID del empleado que desea editar: ");
-            index = controller_searchEmployee(pArrayListEmployee, targetId);
-
-            if(index>=0)
+            modifiedEmployee = employee_newSet();
+            if(modifiedEmployee != NULL)
             {
-                modifiedEmployee = employee_newSetted();
-                if(modifiedEmployee != NULL)
+                employee_setId(modifiedEmployee, targetId);
+                printf("\nEmpleado original: ");
+                target = ll_get(pArrayListEmployee, index);
+                employee_printOne(target);
+                printf("\nEmpleado modificado: ");
+                employee_printOne(modifiedEmployee);
+                if(Input_Confirmation("\nDesea confirmar este ingreso? s/n: ", "\nOpcion invalida", 's', 'n', 162, 160))
                 {
-                    printf("\nEmpleado original: ");
-                    target = ll_get(pArrayListEmployee, index);
-                    employee_printOne(target);
-                    printf("\nEmpleado modificado: ");
-                    employee_printOne(modifiedEmployee);
-                    if(Input_Confirmation("\nDesea confirmar este ingreso? s/n: ", "\nOpcion invalida", 's', 'n', 162, 160))
-                    {
-                        ll_set(pArrayListEmployee, index, modifiedEmployee);
-                        printf("\nEmpleado modificado exitosamente");
-                    }
-                    else
-                    {
-                        printf("\nSe ha cancelado la modificacion de este empleado");
-                        free(modifiedEmployee);
-                        index = -1;
-                    }
+                    ll_set(pArrayListEmployee, index, modifiedEmployee);
+                    printf("\nEmpleado modificado exitosamente");
                 }
                 else
                 {
-                    printf("\nHa ocurrido un error durante la modificacion");
-                    index = -2;
+                    printf("\nSe ha cancelado la modificacion de este empleado");
+                    free(modifiedEmployee);
+                    index = -1;
                 }
-
+            }
+            else
+            {
+                printf("\nHa ocurrido un error durante la modificacion");
+                index = -2;
             }
         }
-        else
-        {
-            printf("\nError: El listado est%c vac%co. Cargue datos desde un archivo o d%c de alta un empleado para acceder a esta opci%cn", 160, 161, 130, 162);
-            index = -3;
-        }
+    }
+    else
+    {
+        printf("\nError: El listado est%c vac%co o no existe.", 160, 161);
+        printf("Cargue datos desde un archivo o d%c de alta un empleado para acceder a esta opci%cn", 130, 162);
+        index = -3;
     }
     return index;
 }
@@ -172,7 +200,7 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
     int targetId;
     Employee* target;
 
-    if(pArrayListEmployee != NULL)
+    if(!ll_isEmpty(pArrayListEmployee))
     {
         if(!ll_isEmpty(pArrayListEmployee))
         {
@@ -184,8 +212,9 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
             {
                 target = ll_get(pArrayListEmployee, index);
                 employee_printOne(target);
-                if(Input_Confirmation("Desea eliminar este empleado? s/n: ", "Opcion invalida", 's', 'n'))
+                if(Input_Confirmation("\nDesea eliminar este empleado? s/n: ", "Opcion invalida", 's', 'n'))
                 {
+                    employee_delete(target);
                     ll_remove(pArrayListEmployee, index);
                     removedEmployee = 0;
                     printf("\nEmpleado dado de baja exitosamente");
@@ -199,7 +228,8 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
         }
         else
         {
-            printf("\nError: El listado est%c vac%co. Cargue datos desde un archivo o d%c de alta un empleado para acceder a esta opci%cn", 160, 161, 130, 162);
+            printf("\nError: El listado est%c vac%co o no existe.", 160, 161);
+            printf("Cargue datos desde un archivo o d%c de alta un empleado para acceder a esta opci%cn", 130, 162);
             removedEmployee = -2;
         }
     }
@@ -219,10 +249,11 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
     int i = -1;
     Employee* current;
 
-    if(pArrayListEmployee != NULL)
+    if(!ll_isEmpty(pArrayListEmployee))
     {
         if(!ll_isEmpty(pArrayListEmployee))
         {
+            printf("\n%3s %10s %20s %7s\n", "ID", "Nombre", "Horas Trabajadas", "Salario");
             for(i=0;i<ll_len(pArrayListEmployee);i++)
             {
                 current = ll_get(pArrayListEmployee, i);
@@ -231,7 +262,8 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
         }
         else
         {
-            printf("\nError: El listado est%c vac%co. Cargue datos desde un archivo o d%c de alta un empleado para acceder a esta opci%cn", 160, 161, 130, 162);
+            printf("\nError: El listado est%c vac%co o no existe.", 160, 161);
+            printf("Cargue datos desde un archivo o d%c de alta un empleado para acceder a esta opci%cn", 130, 162);
             i = 0;
         }
     }
@@ -254,7 +286,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
     {
         if(!ll_isEmpty(pArrayListEmployee))
         {
-                option = Ui_CreateMenu("Elija un criterio de ordenamiento: ", "\nIngrese una opcion", 5,    "Por ID",
+                option = Ui_CreateMenu("Elija un criterio de ordenamiento: ", "\nIngrese una opcion: ", 5,    "Por ID",
                                                                                                             "Por Nombre",
                                                                                                             "Por horas trabajadas",
                                                                                                             "Por salario",
@@ -263,6 +295,8 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
                 order = Ui_CreateMenu("Desea ordenar de forma ascendente o descendente", "\nIngrese una opcion: ", 2, "Descendente",
                                                                                                                         "Ascendente");
                 order--;
+
+                printf("\nOrenando el listado. Esto puede demorar unos instantes...");
                 switch(option)
                 {
                     case 1:
@@ -287,7 +321,8 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
         }
         else
         {
-            printf("\nError: El listado est%c vac%co. Cargue datos desde un archivo o d%c de alta un empleado para acceder a esta opci%cn", 160, 161, 130, 162);
+            printf("\nError: El listado est%c vac%co o no existe.", 160, 161);
+            printf("Cargue datos desde un archivo o d%c de alta un empleado para acceder a esta opci%cn", 130, 162);
             option = -1;
         }
     }
@@ -311,7 +346,7 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
     char name[128];
     FILE* pFile;
 
-    if(path != NULL && pArrayListEmployee != NULL )
+    if(path != NULL && !ll_isEmpty(pArrayListEmployee))
     {
         savedData = 0;
         pFile = fopen(path, "w");
@@ -355,7 +390,7 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
     Employee* current;
     FILE* pFile;
 
-    if(path != NULL && pArrayListEmployee != NULL )
+    if(path != NULL && !ll_isEmpty(pArrayListEmployee))
     {
         savedData = 0;
         pFile = fopen(path, "wb");
@@ -379,7 +414,7 @@ int controller_searchEmployee(LinkedList* pArrayListEmployee, int targetId)
     int index = -2;
     int currentId;
     Employee* target;
-    if(pArrayListEmployee != NULL)
+    if(!ll_isEmpty(pArrayListEmployee))
     {
         for(index=0;index<ll_len(pArrayListEmployee);index++)
         {

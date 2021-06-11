@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Comparison.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Comparison.h" />
 		<Unit filename="Controller.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -39,13 +43,26 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Employee.h" />
+		<Unit filename="Input.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Input.h" />
 		<Unit filename="LinkedList.h" />
+		<Unit filename="Text.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Text.h" />
+		<Unit filename="Ui.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Ui.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="parser.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="parser.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

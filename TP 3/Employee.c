@@ -1,6 +1,6 @@
 #include "Employee.h"
 
-static int lastId = 0;
+static int lastId;
 
 int employee_setLastId(int id)
 {
@@ -55,10 +55,9 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
     return new;
 }
 
-Employee* employee_newSetted() // Consultar por salario
+Employee* employee_newSet(bool increaseId) // Consultar por salario
 {
     Employee* new;
-    int id;
     int hoursWorked;
     int salary;
     char name[128];
@@ -70,32 +69,18 @@ Employee* employee_newSetted() // Consultar por salario
         Input_String_Name(name, 128,"Ingrese el nombre del empleado: ", "Este campo no acepta numeros");
         Input_IntOverValue(&hoursWorked, "Ingrese las horas trabajadas: ", 0, "Las horas trabajadas deben ser mayores a 0");
         Input_IntOverValue(&salary, "Ingrese el salario: ", 0, "El salario debe ser mayor a 0");
-        id = employee_increaseLastId();
         employee_setHorasTrabajadas(new, hoursWorked);
-        employee_setId(new, id);
         employee_setNombre(new, name);
         employee_setSueldo(new, salary);
     }
     return new;
 }
 
-int employee_delete(Employee* this)
-{
-    int deletedEmployee = -1;
-
-    if(this != NULL)
-    {
-        free(this);
-        deletedEmployee = 0;
-    }
-    return deletedEmployee;
-}
-
 int employee_setId(Employee* this,int id)
 {
     int set = -1;
 
-    if(this != NULL)
+    if(this != NULL && id > 0)
     {
         this->id = id;
         set = 0;
@@ -192,6 +177,18 @@ int employee_getSueldo(Employee* this,int* sueldo)
     return get;
 }
 
+int employee_delete(Employee* this)
+{
+    int deletedEmployee = -1;
+
+    if(this != NULL)
+    {
+        deletedEmployee = 0;
+        free(this);
+    }
+    return deletedEmployee;
+}
+
 int employee_printOne(Employee* myEmployee)
 {
     int printedEmployee = -1;
@@ -210,7 +207,7 @@ int employee_printOne(Employee* myEmployee)
                 {
                     if(!employee_getSueldo(myEmployee, &salary))
                     {
-                        printf("\n%d %s %d %d", id, name, hoursWorked, salary);
+                        printf("\n%3d %10s %10d %14d", id, name, hoursWorked, salary);
                         printedEmployee = 0;
                     }
                 }
