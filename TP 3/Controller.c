@@ -26,7 +26,6 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
             if(pFile != NULL)
             {
                 gotData = parser_EmployeeFromText(pFile, pArrayListEmployee);
-                printf("\nDatos cargados exitosamente");
                 fclose(pFile);
             }
         }
@@ -59,10 +58,9 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
             if(pFile != NULL)
             {
                 gotData = parser_EmployeeFromBinary(pFile, pArrayListEmployee);
-                printf("\nDatos cargados exitosamente");
+                fclose(pFile);
             }
         }
-        fclose(pFile);
     }
     return gotData;
 }
@@ -313,6 +311,7 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
                     }
                 }
             }
+            fclose(pFile);
             printf("\nListado guardado exitosamente. %d elementos registrados", savedData);
         }
     }
@@ -339,6 +338,7 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
                 fwrite(current, sizeof(Employee), 1, pFile);
                 savedData++;
             }
+            fclose(pFile);
             printf("\nListado guardado exitosamente. %d elementos registrados", savedData);
         }
     }

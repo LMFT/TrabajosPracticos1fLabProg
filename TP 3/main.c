@@ -23,19 +23,21 @@ int main()
 
         switch(option)
         {
-            case 1: // cargar texto
-                returnAux = controller_loadFromText("data_prueba.csv", pArrayListEmployee);
+            case 1: // cargar texto                /*data_prueba.csv*/
+                returnAux = controller_loadFromText("data.csv", pArrayListEmployee);
                 if(returnAux >= 0)
                 {
-                    controller_loadLastId("last_id2.bin");
+                    printf("\nDatos cargados exitosamente. %d elementos a%cadidos", returnAux, 164);
+                    controller_loadLastId("last_id.bin");
                     dataLoaded = true;
                 }
                 break;
             case 2: // cargar binario
-                controller_loadFromBinary("data_prueba.bin", pArrayListEmployee);
+                returnAux = controller_loadFromBinary("data.bin", pArrayListEmployee);
                 if(returnAux >= 0)
                 {
-                    controller_loadLastId("last_id2.bin");
+                    controller_loadLastId("last_id.bin");
+                    printf("\nDatos cargados exitosamente. %d elementos a%cadidos", returnAux, 164);
                     dataLoaded = true;
                 }
                 break;
@@ -72,13 +74,13 @@ int main()
             case 8: // guardar texto
                 if(dataLoaded)
                 {
-                    controller_saveAsText("data_prueba.csv", pArrayListEmployee);
-                    controller_saveLastId("last_id2.bin");
+                    controller_saveAsText("data.csv", pArrayListEmployee);
+                    controller_saveLastId("last_id.bin");
                 }
                 break;
             case 9: // guardar binario
-                controller_saveAsBinary("data_prueba.bin", pArrayListEmployee);
-                controller_saveLastId("last_id2.bin");
+                controller_saveAsBinary("data.bin", pArrayListEmployee);
+                controller_saveLastId("last_id.bin");
                 break;
             case 10: // salir
                 option--;
