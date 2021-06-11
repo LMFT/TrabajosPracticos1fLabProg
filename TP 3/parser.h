@@ -8,13 +8,22 @@
 #include "LinkedList.h"
 #include "Employee.h"
 
+/** \brief Parses the data stored in a text file and loads it into the employee list.
+ *
+ * \param pFile FILE* Pointer to file where the data is stored
+ * \param pArrayListEmployee LinkedList* Pointer to employee list
+ * \return int [-1] if either pointers is NULL
+                amount of elements parsed otherwise
+ *
+ */
 int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee);
 
-/** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo binario).
+/** \brief Parses the data stored in a binary file and loads it into the employee list.
  *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
+ * \param pFile FILE* Pointer to file where the data is stored
+ * \param pArrayListEmployee LinkedList* Pointer to employee list
+ * \return int [-1] if either pointers is NULL
+                amount of elements parsed otherwise
  *
  */
 int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee);

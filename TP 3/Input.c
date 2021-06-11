@@ -74,15 +74,15 @@ int Input_IntOverValue(int* number, char inputMsg[], int minValue, char invalidI
     return assignedValue;
 }
 
-int Input_IntExcludingRange(int* number, char inputMsg[], int min, int max, ...)
+int Input_IntExcludingRange(int* number, char inputMsg[], int min, int max, char invalidInput[],...)
 {
     int gotInt = -3;
     va_list arguments;
 
-    if(number != NULL)
+    if(number != NULL && min<max)
     {
         gotInt = -2;
-        va_start(arguments, max);
+        va_start(arguments, invalidInput);
         Text_PrintString_Internal(inputMsg, arguments);
         if(!Input_GetInt(number))
         {
@@ -90,6 +90,10 @@ int Input_IntExcludingRange(int* number, char inputMsg[], int min, int max, ...)
             if(*number>=max && *number<=min)
             {
                 gotInt = 0;;
+            }
+            else
+            {
+                Text_PrintString_Internal(invalidInput, arguments);
             }
         }
         va_end(arguments);
@@ -293,16 +297,6 @@ int Input_String(char myString[], int sizeOfString,char inputMsg[])
             myString[i] = '\0';
             break;
         }
-    }
-    return i;
-}
-
-int Input_String_Initialize(char myString[])
-{
-    int i;
-    for(i=0;i<strlen(myString);i++)
-    {
-        myString[i] = '\0';
     }
     return i;
 }

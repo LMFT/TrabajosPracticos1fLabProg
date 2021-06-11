@@ -14,22 +14,6 @@ int Text_NormalizeName(char name[])
     return i;
 }
 
-int Text_ConcatenateName(char firstName[], char lastName[], char fullName[])
-{
-    int concatenation = 1;
-    if(strcat(fullName, lastName))
-    {
-        if(strcat(fullName, ", "))
-        {
-            if(strcat(fullName, firstName))
-            {
-                concatenation=0;
-            }
-        }
-    }
-    return concatenation;
-}
-
 int Text_Initialize(char myString[])
 {
     int i;
@@ -134,18 +118,17 @@ int Text_PrintString(char myString[], ...)
     return printedString;
 }
 
-int Text_ReadFormatMask(char* myString)
+int Text_ReadFormatMask(char* myChar)
 {
     int readMask = -2;
     int tempInt;
     int i = 0;
-    if(myString != NULL)
+    if(myChar != NULL)
     {
         readMask = -1;
-        if(*myString == '%')
+        if(*myChar == '%')
         {
-            readMask = 0;
-            switch(*(myString+1))
+            switch(*(myChar+1))
             {
                 case 'c':
                     readMask = 1;
@@ -157,14 +140,14 @@ int Text_ReadFormatMask(char* myString)
                     do
                     {
                         i++;
-                        tempInt = atoi(myString+i);
+                        tempInt = atoi(myChar+i);
                     }while(tempInt!=0);
-                    if(*(myString+i) == 'f')
+                    if(*(myChar+i) == 'f')
                     {
                         readMask = 3;
                     }
                 default:
-                    break;
+                readMask = 0;
             }
         }
     }

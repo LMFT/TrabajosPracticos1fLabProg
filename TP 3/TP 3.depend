@@ -55,3 +55,59 @@
 1623103597 source:c:\users\lucas\desktop\curso programacion\labo y prog 1\ejercicios\tp 3\ui.c
 	"Ui.h"
 
+1623351402 source:c:\users\lucas\desktop\curso programacion\repositorios\tp_laboratorio_1\tp 3\employee.c
+	"Employee.h"
+
+1623351402 c:\users\lucas\desktop\curso programacion\repositorios\tp_laboratorio_1\tp 3\employee.h
+	"Input.h"
+
+1622845777 c:\users\lucas\desktop\curso programacion\repositorios\tp_laboratorio_1\tp 3\input.h
+	"Text.h"
+
+1622759177 c:\users\lucas\desktop\curso programacion\repositorios\tp_laboratorio_1\tp 3\text.h
+	"Comparison.h"
+
+1623425616 c:\users\lucas\desktop\curso programacion\repositorios\tp_laboratorio_1\tp 3\comparison.h
+	<ctype.h>
+	<string.h>
+	<stdlib.h>
+	<stdarg.h>
+	<stdio.h>
+
+1623101769 source:c:\users\lucas\desktop\curso programacion\repositorios\tp_laboratorio_1\tp 3\input.c
+	"Input.h"
+
+1623424260 source:c:\users\lucas\desktop\curso programacion\repositorios\tp_laboratorio_1\tp 3\main.c
+	"Controller.h"
+
+1623428734 c:\users\lucas\desktop\curso programacion\repositorios\tp_laboratorio_1\tp 3\controller.h
+	"Input.h"
+	"LinkedList.h"
+	"Employee.h"
+	"parser.h"
+	"Ui.h"
+
+1565993298 c:\users\lucas\desktop\curso programacion\repositorios\tp_laboratorio_1\tp 3\linkedlist.h
+
+1622775841 c:\users\lucas\desktop\curso programacion\repositorios\tp_laboratorio_1\tp 3\parser.h
+	"LinkedList.h"
+	"Employee.h"
+
+1622844535 c:\users\lucas\desktop\curso programacion\repositorios\tp_laboratorio_1\tp 3\ui.h
+	"Input.h"
+
+1623168337 source:c:\users\lucas\desktop\curso programacion\repositorios\tp_laboratorio_1\tp 3\parser.c
+	"parser.h"
+
+1622759161 source:c:\users\lucas\desktop\curso programacion\repositorios\tp_laboratorio_1\tp 3\text.c
+	"Text.h"
+
+1623103597 source:c:\users\lucas\desktop\curso programacion\repositorios\tp_laboratorio_1\tp 3\ui.c
+	"Ui.h"
+
+1623425616 source:c:\users\lucas\desktop\curso programacion\repositorios\tp_laboratorio_1\tp 3\comparison.c
+	"Comparison.h"
+
+1623428750 source:c:\users\lucas\desktop\curso programacion\repositorios\tp_laboratorio_1\tp 3\controller.c
+	"Controller.h"
+
